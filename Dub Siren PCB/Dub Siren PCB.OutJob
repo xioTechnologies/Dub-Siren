@@ -19,7 +19,7 @@ Name=Dub Siren PCB.OutJob
 Description=
 TargetOutputMedium=Print Job
 VariantName=[No Variations]
-VariantScope=2
+VariantScope=1
 CurrentConfigurationName=Default Configuration
 TargetPrinter=Lexmark CS510 Series PS3
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintWhat=1
@@ -255,7 +255,7 @@ OutputEnabled12_OutputMedium3=4
 OutputEnabled12_OutputMedium4=0
 OutputDefault12=0
 Configuration12_Name1=OutputConfigurationParameter1
-Configuration12_Item1=Record=ExportSTEPView|ExportComponentOptions=0|ExportModelsOption=2|ExportHolesOption=0|CanSelectPrimitives=False|IncludeMechanicalPadHoles=False|IncludeElectricalPadHoles=False|IncludeFreePadHoles=False|ExportFoldedBoard=True|ExportFoldedBoardRate=0|ComponentSuffixType=0|ComponentSuffix= |ExportCopperOption=0|ExportCopperLayer=1|ExportPadAndViaBarrelsOnly=False|IgnoreBoardCopperLayerColors=False
+Configuration12_Item1=Record=ExportSTEPView|ExportComponentOptions=0|ExportModelsOption=2|ExportHolesOption=0|CanSelectPrimitives=False|IncludeMechanicalPadHoles=True|IncludeElectricalPadHoles=True|IncludeFreePadHoles=True|ExportFoldedBoard=False|ExportFoldedBoardRate=0|ComponentSuffixType=0|ComponentSuffix= |ExportCopperOption=0|ExportCopperLayer=0|ExportPadAndViaBarrelsOnly=False|IgnoreBoardCopperLayerColors=False
 
 [PublishSettings]
 OutputFilePath2=C:\MyFiles\x-io\Open Source\Dub Siren\Dub Siren PCB\Project Outputs for Dub Siren\
