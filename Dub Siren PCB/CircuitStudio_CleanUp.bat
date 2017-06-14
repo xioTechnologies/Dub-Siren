@@ -10,12 +10,24 @@ echo Removing "History" directories recursively...
 for /f "delims==" %%i in ('dir /b /on /s "%~p0*History"') do if "%%~ni"=="History" rd "%%i" /s /q
 echo.
 
+echo Removing "Project Logs for " directories recursively...
+for /f "delims==" %%i in ('dir /b /on /s "%~p0*Project Logs for *"') do rd "%%i" /s /q
+echo.
+
 echo Removing "*.PrjPcbStructure" files...
 for /f "delims==" %%i in ('dir /b /on /s "%~p0*.PrjPcbStructure"') do del "%%i" /f /q
 echo.
 
 echo Removing "*.OutputStatus" files...
 for /f "delims==" %%i in ('dir /b /on /s "%~p0*.OutputStatus"') do del "%%i" /f /q
+echo.
+
+echo Removing "*.drc" files...
+for /f "delims==" %%i in ('dir /b /on /s "%~p0*.drc"') do del "%%i" /f /q
+echo.
+
+echo Removing "*.html" files...
+for /f "delims==" %%i in ('dir /b /on /s "%~p0*.html"') do del "%%i" /f /q
 echo.
 
 echo Removing "Status Report.Txt" files...

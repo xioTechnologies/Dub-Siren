@@ -88,6 +88,58 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
+[GeneratedDocument1]
+DocumentPath=Project Outputs for Dub Siren PCB\BOM\[Dub Siren PCB.PrjPcb] BOM_PartType-Dub Siren PCB.xlsx
+DItemRevisionGUID=
+
+[GeneratedDocument2]
+DocumentPath=Project Outputs for Dub Siren PCB\NC Drill\[Dub Siren PCB.PrjPcb] PCB1-RoundHoles.TXT
+DItemRevisionGUID=
+
+[GeneratedDocument3]
+DocumentPath=Project Outputs for Dub Siren PCB\NC Drill\[Dub Siren PCB.PrjPcb] PCB1-SlotHoles.TXT
+DItemRevisionGUID=
+
+[GeneratedDocument4]
+DocumentPath=Project Outputs for Dub Siren PCB\Gerber\[Dub Siren PCB.PrjPcb] PCB1.GBL
+DItemRevisionGUID=
+
+[GeneratedDocument5]
+DocumentPath=Project Outputs for Dub Siren PCB\Gerber\[Dub Siren PCB.PrjPcb] PCB1.GBO
+DItemRevisionGUID=
+
+[GeneratedDocument6]
+DocumentPath=Project Outputs for Dub Siren PCB\Gerber\[Dub Siren PCB.PrjPcb] PCB1.GBP
+DItemRevisionGUID=
+
+[GeneratedDocument7]
+DocumentPath=Project Outputs for Dub Siren PCB\Gerber\[Dub Siren PCB.PrjPcb] PCB1.GBS
+DItemRevisionGUID=
+
+[GeneratedDocument8]
+DocumentPath=Project Outputs for Dub Siren PCB\Gerber\[Dub Siren PCB.PrjPcb] PCB1.GKO
+DItemRevisionGUID=
+
+[GeneratedDocument9]
+DocumentPath=Project Outputs for Dub Siren PCB\Gerber\[Dub Siren PCB.PrjPcb] PCB1.GTL
+DItemRevisionGUID=
+
+[GeneratedDocument10]
+DocumentPath=Project Outputs for Dub Siren PCB\Gerber\[Dub Siren PCB.PrjPcb] PCB1.GTO
+DItemRevisionGUID=
+
+[GeneratedDocument11]
+DocumentPath=Project Outputs for Dub Siren PCB\Gerber\[Dub Siren PCB.PrjPcb] PCB1.GTP
+DItemRevisionGUID=
+
+[GeneratedDocument12]
+DocumentPath=Project Outputs for Dub Siren PCB\Gerber\[Dub Siren PCB.PrjPcb] PCB1.GTS
+DItemRevisionGUID=
+
+[GeneratedDocument13]
+DocumentPath=Project Outputs for Dub Siren PCB\ExportSTEP\[Dub Siren PCB.PrjPcb] PCB1.step
+DItemRevisionGUID=
+
 [Configuration1]
 Name=Default Configuration
 ParameterCount=0
