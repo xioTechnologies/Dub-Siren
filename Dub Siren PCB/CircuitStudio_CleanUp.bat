@@ -26,6 +26,10 @@ echo Removing "*.drc" files...
 for /f "delims==" %%i in ('dir /b /on /s "%~p0*.drc"') do del "%%i" /f /q
 echo.
 
+echo Removing "*.htm" files...
+for /f "delims==" %%i in ('dir /b /on /s "%~p0*.htm"') do del "%%i" /f /q
+echo.
+
 echo Removing "*.html" files...
 for /f "delims==" %%i in ('dir /b /on /s "%~p0*.html"') do del "%%i" /f /q
 echo.
