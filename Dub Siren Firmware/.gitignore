@@ -1,0 +1,9 @@
+firmware/*.X/build/
+firmware/*.X/debug/
+firmware/*.X/disassembly/
+firmware/*.X/dist/
+firmware/*.X/nbproject/private/
+firmware/*.X/nbproject/*.mk
+firmware/*.X/nbproject/*.bash
+firmware/*.X/nbproject/*.properties
+firmware/*.X/.dep.inc
