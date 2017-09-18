@@ -402,15 +402,15 @@ static void ReadPotentiometers(SynthesiserParameters * const synthesiserParamete
         potentiometerIgnored[index] = ComparePotentiometers(potentiometers[index], potentiometersWhenIgnored[index]);
     } else {
         synthesiserParameters->lfoAmplitude = CUBE(2.0f * (potentiometers[index] - 0.5f)) * (MAXIMUM_VCO_FREQUENCY / 2.0f);
-        float absLfoAmplitude = fabs(synthesiserParameters->lfoAmplitude);
-        if ((synthesiserParameters->vcoFrequency - absLfoAmplitude) < MINIMUM_VCO_FREQUENCY) {
-            absLfoAmplitude = synthesiserParameters->vcoFrequency - MINIMUM_VCO_FREQUENCY;
-        }
-        if ((synthesiserParameters->vcoFrequency + absLfoAmplitude) > MAXIMUM_VCO_FREQUENCY) {
-            absLfoAmplitude = MAXIMUM_VCO_FREQUENCY - synthesiserParameters->vcoFrequency;
-        }
-        synthesiserParameters->lfoAmplitude = copysignf(absLfoAmplitude, synthesiserParameters->lfoAmplitude);
     }
+    float absLfoAmplitude = fabs(synthesiserParameters->lfoAmplitude);
+    if ((synthesiserParameters->vcoFrequency - absLfoAmplitude) < MINIMUM_VCO_FREQUENCY) {
+        absLfoAmplitude = synthesiserParameters->vcoFrequency - MINIMUM_VCO_FREQUENCY;
+    }
+    if ((synthesiserParameters->vcoFrequency + absLfoAmplitude) > MAXIMUM_VCO_FREQUENCY) {
+        absLfoAmplitude = MAXIMUM_VCO_FREQUENCY - synthesiserParameters->vcoFrequency;
+    }
+    synthesiserParameters->lfoAmplitude = copysignf(absLfoAmplitude, synthesiserParameters->lfoAmplitude);
 
     // VCO waveform
     index = PotentiometerIndexVcoWaveform;

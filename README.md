@@ -2,7 +2,7 @@
 
 A monophonic synthesiser comprised of an LFO, VCO, and Delay.  The synthesiser is controlled by 9 potentiometers and 3 buttons.  Configurations can be stored to 1 of 10 preset keys.  Pressing a preset key will override the potentiometers and buttons with the stored configuration.
 
-The processor used is [PIC32MZ](http://www.microchip.com/wwwproducts/en/PIC32MZ2048EFH064).  This is a 32-bit device with a FPU, 512 KB of RAM, 2 MB of program space, clocked at 252 MHz.  The processor is deliberately over-spec'd to simplify development and allow new ideas to be explored in the future.  The [DAC](https://www.cirrus.com/products/cs4354/) is a 24-bit 192 kHz stereo device configured for 96 kHz mono.
+The processor used is [PIC32MZ](http://www.microchip.com/wwwproducts/en/PIC32MZ2048EFH064).  This is a 32-bit device with a FPU, 512 KB of RAM, 2 MB of program space, running at 252 MHz.  The processor is deliberately over-spec'd to simplify development and allow new ideas to be explored in the future.  The [DAC](https://www.cirrus.com/products/cs4354/) is a 24-bit 192 kHz stereo device configured for 96 kHz mono.
 
 ## Synthesiser elements
 

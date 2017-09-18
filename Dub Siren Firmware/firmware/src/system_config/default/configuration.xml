@@ -185,11 +185,11 @@
     </Templates>
     <CompilerItems>
       <C32>
-        <Include value="C:\MyFiles\x-io\Open Source\Dub-Siren\Dub Siren Firmware\firmware\src"/>
-        <Include value="C:\MyFiles\x-io\Open Source\Dub-Siren\Dub Siren Firmware\firmware\src\system_config\default"/>
-        <Include value="C:\MyFiles\x-io\Open Source\Dub-Siren\Dub Siren Firmware\firmware\src\default"/>
-        <Include value="C:\microchip\harmony\v1_11\framework"/>
-        <Include value="C:\MyFiles\x-io\Open Source\Dub-Siren\Dub Siren Firmware\firmware\src\system_config\default\framework"/>
+        <Include value="C:/MyFiles/x-io/Open Source/Dub-Siren/Dub Siren Firmware/firmware/src"/>
+        <Include value="C:/MyFiles/x-io/Open Source/Dub-Siren/Dub Siren Firmware/firmware/src/system_config/default"/>
+        <Include value="C:/MyFiles/x-io/Open Source/Dub-Siren/Dub Siren Firmware/firmware/src/default"/>
+        <Include value="C:/microchip/harmony/v1_11/framework"/>
+        <Include value="C:/MyFiles/x-io/Open Source/Dub-Siren/Dub Siren Firmware/firmware/src/system_config/default/framework"/>
       </C32>
     </CompilerItems>
     <Libraries>
