@@ -32,6 +32,7 @@ The processor used is [PIC32MZ](http://www.microchip.com/wwwproducts/en/PIC32MZ2
 * Top plate
 * Bottom plate
 * Spacer (x4)
+* [Row 1, Size 1x1 Cherry MX Keycap](http://www.maxkeyboard.com/row-1-size-1x1-cherry-mx-keycap-r1-1x1.html) (x10)
 * [8mm hex stand-off](https://www.digikey.co.uk/products/en?keywords=36-24432-ND) (x4)
 * [M3 5mm screw](http://www.ebay.co.uk/itm/M3-BLACK-HIGH-TENSILE-10-9-BUTTON-HEAD-ALLEN-BOLTS-SELF-COLOUR-DOME-SOCKET-SCREW/121829578789) (x4)
 * [M3 10mm screw](http://www.ebay.co.uk/itm/M3-BLACK-HIGH-TENSILE-10-9-BUTTON-HEAD-ALLEN-BOLTS-SELF-COLOUR-DOME-SOCKET-SCREW/121829578789) (x4)
