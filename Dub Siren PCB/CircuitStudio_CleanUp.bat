@@ -10,6 +10,14 @@ echo Removing "History" directories recursively...
 for /f "delims==" %%i in ('dir /b /on /s "%~p0*History"') do if "%%~ni"=="History" rd "%%i" /s /q
 echo.
 
+echo Removing "Logs" directories recursively...
+for /f "delims==" %%i in ('dir /b /on /s "%~p0*Logs"') do if "%%~ni"=="Logs" rd "%%i" /s /q
+echo.
+
+echo Removing "Outputs" directories recursively...
+for /f "delims==" %%i in ('dir /b /on /s "%~p0*Outputs"') do if "%%~ni"=="Outputs" rd "%%i" /s /q
+echo.
+
 echo Removing "Project Logs for " directories recursively...
 for /f "delims==" %%i in ('dir /b /on /s "%~p0*Project Logs for *"') do rd "%%i" /s /q
 echo.
