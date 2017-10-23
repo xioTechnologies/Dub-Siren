@@ -29,7 +29,7 @@ PushECOToAnnotationFile=1
 DItemRevisionGUID=
 ReportSuppressedErrorsInMessages=0
 ForceUpdateCount=0
-OutputPath=
+OutputPath=Outputs
 LogFolderPath=
 ManagedProjectGUID=
 LinkedManagedProjectGUID=
@@ -91,55 +91,79 @@ GenerateClassCluster=0
 DocumentUniqueId=
 
 [GeneratedDocument1]
-DocumentPath=Project Outputs for Dub Siren PCB\BOM\[Dub Siren PCB.PrjPcb] BOM_PartType-Dub Siren PCB.xlsx
+DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\BOM\BOM_PartType-Dub Siren PCB.xlsx
 DItemRevisionGUID=
 
 [GeneratedDocument2]
-DocumentPath=Project Outputs for Dub Siren PCB\NC Drill\[Dub Siren PCB.PrjPcb] PCB1-RoundHoles.TXT
+DocumentPath=Outputs\Design Rule Check - PCB1.html
 DItemRevisionGUID=
 
 [GeneratedDocument3]
-DocumentPath=Project Outputs for Dub Siren PCB\NC Drill\[Dub Siren PCB.PrjPcb] PCB1-SlotHoles.TXT
+DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\NC Drill\PCB1-RoundHoles.TXT
 DItemRevisionGUID=
 
 [GeneratedDocument4]
-DocumentPath=Project Outputs for Dub Siren PCB\Gerber\[Dub Siren PCB.PrjPcb] PCB1.GBL
+DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\NC Drill\PCB1-SlotHoles.TXT
 DItemRevisionGUID=
 
 [GeneratedDocument5]
-DocumentPath=Project Outputs for Dub Siren PCB\Gerber\[Dub Siren PCB.PrjPcb] PCB1.GBO
+DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\NC Drill\PCB1.DRR
 DItemRevisionGUID=
 
 [GeneratedDocument6]
-DocumentPath=Project Outputs for Dub Siren PCB\Gerber\[Dub Siren PCB.PrjPcb] PCB1.GBP
+DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument7]
-DocumentPath=Project Outputs for Dub Siren PCB\Gerber\[Dub Siren PCB.PrjPcb] PCB1.GBS
+DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.GBL
 DItemRevisionGUID=
 
 [GeneratedDocument8]
-DocumentPath=Project Outputs for Dub Siren PCB\Gerber\[Dub Siren PCB.PrjPcb] PCB1.GKO
+DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.GBO
 DItemRevisionGUID=
 
 [GeneratedDocument9]
-DocumentPath=Project Outputs for Dub Siren PCB\Gerber\[Dub Siren PCB.PrjPcb] PCB1.GTL
+DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.GBP
 DItemRevisionGUID=
 
 [GeneratedDocument10]
-DocumentPath=Project Outputs for Dub Siren PCB\Gerber\[Dub Siren PCB.PrjPcb] PCB1.GTO
+DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.GBS
 DItemRevisionGUID=
 
 [GeneratedDocument11]
-DocumentPath=Project Outputs for Dub Siren PCB\Gerber\[Dub Siren PCB.PrjPcb] PCB1.GTP
+DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.GKO
 DItemRevisionGUID=
 
 [GeneratedDocument12]
-DocumentPath=Project Outputs for Dub Siren PCB\Gerber\[Dub Siren PCB.PrjPcb] PCB1.GTS
+DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.GTL
 DItemRevisionGUID=
 
 [GeneratedDocument13]
-DocumentPath=Project Outputs for Dub Siren PCB\ExportSTEP\[Dub Siren PCB.PrjPcb] PCB1.step
+DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.GTO
+DItemRevisionGUID=
+
+[GeneratedDocument14]
+DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.GTP
+DItemRevisionGUID=
+
+[GeneratedDocument15]
+DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.GTS
+DItemRevisionGUID=
+
+[GeneratedDocument16]
+DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\NC Drill\PCB1.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument17]
+DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.REP
+DItemRevisionGUID=
+
+[GeneratedDocument18]
+DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument19]
+DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\ExportSTEP\PCB1.step
 DItemRevisionGUID=
 
 [Configuration1]
@@ -155,7 +179,7 @@ DocumentReferenceClass1=DocumentReference
 OutputJobFileName1=Dub Siren PCB.OutJob
 
 [Generic_EDE]
-OutputDir=
+OutputDir=Outputs
 
 [OutputGroup1]
 Name=Netlist Outputs
