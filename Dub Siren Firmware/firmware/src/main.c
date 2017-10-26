@@ -13,15 +13,15 @@
 //------------------------------------------------------------------------------
 // Includes
 
-#include <stdbool.h>
-#include <stddef.h> // NULL
 #include "FirmwareVersion.h"
 #include "IODefinitions.h"
+#include <stdbool.h>
+#include <stddef.h> // NULL
 #include "Synthesiser/Synthesiser.h"
 #include "system/common/sys_module.h" // SYS_Initialize
+#include "Timer/Timer.h"
 #include "Uart/Uart1.h"
 #include "UserInterface/UserInterface.h"
-#include "Timer/Timer.h"
 #include <xc.h>
 
 //------------------------------------------------------------------------------

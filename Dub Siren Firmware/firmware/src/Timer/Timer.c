@@ -8,16 +8,9 @@
 // Includes
 
 #include <stdint.h> // UINT32_MAX
+#include "system/int/sys_int.h"
 #include "Timer.h"
 #include <xc.h>
-
-//------------------------------------------------------------------------------
-// Definitions
-
-#define T5_IFSXCLR IFS0CLR
-#define T5_IECXSET IEC0SET
-#define T5_IECXCLR IEC0CLR
-#define T5_INT_BIT (1 << 24)
 
 //------------------------------------------------------------------------------
 // Variable declarations
@@ -34,9 +27,9 @@ static volatile Ticks64 timerOverflowCounter;
 void TimerInitialise() {
     T4CONbits.T32 = 1;
     T4CONbits.ON = 1; // start timer
-    IPC6bits.T5IP = 7; // set interrupt priority
-    T5_IFSXCLR = T5_INT_BIT; // clear interrupt flag
-    T5_IECXSET = T5_INT_BIT; // enable interrupt
+    SYS_INT_VectorPrioritySet(_TIMER_5_VECTOR, INT_PRIORITY_LEVEL7); // set interrupt priority
+    SYS_INT_SourceStatusClear(INT_SOURCE_TIMER_5); // clear interrupt flag
+    SYS_INT_SourceEnable(INT_SOURCE_TIMER_5); // enable interrupt
 }
 
 /**
@@ -94,7 +87,7 @@ void TimerDelayMicroseconds(uint32_t microseconds) {
  */
 void __attribute__((interrupt(), vector(_TIMER_5_VECTOR))) Timer5Interrupt() {
     timerOverflowCounter.value += (uint64_t) UINT32_MAX;
-    T5_IFSXCLR = T5_INT_BIT; // clear interrupt flag
+    SYS_INT_SourceStatusClear(INT_SOURCE_TIMER_5); // clear interrupt flag
 }
 
 //------------------------------------------------------------------------------

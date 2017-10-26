@@ -13,26 +13,14 @@
 //------------------------------------------------------------------------------
 // Includes
 
-#include <sys/attribs.h> // __ISR
+#include "system/int/sys_int.h"
 #include "Uart1.h"
 #include <xc.h>
 
 //------------------------------------------------------------------------------
 // Definitions
 
-#define U1_INTERRUPT_PRIORITY (3)
-
-#define U1_RX_IFSXCLR IFS3CLR
-#define U1_RX_IFSXSET IFS3SET
-#define U1_RX_IECXCLR IEC3CLR
-#define U1_RX_IECXSET IEC3SET
-#define U1_RX_BIT (1 << 17)
-
-#define U1_TX_IFSXCLR IFS3CLR
-#define U1_TX_IFSXSET IFS3SET
-#define U1_TX_IECXCLR IEC3CLR
-#define U1_TX_IECXSET IEC3SET
-#define U1_TX_BIT (1 << 18)
+#define INTERRUPT_PRIORITY (INT_PRIORITY_LEVEL3)
 
 //------------------------------------------------------------------------------
 // Variables
@@ -61,7 +49,6 @@ void Uart1Initialise(const UartSettings * const uartSettings) {
 
     // Ensure default register states
     Uart1Disable();
-    PMD5bits.U1MD = 0; // enable peripheral
 
     // Configure module
     if (uartSettings->ctsRtsEnabled == true) {
@@ -79,9 +66,9 @@ void Uart1Initialise(const UartSettings * const uartSettings) {
     U1STAbits.UTXEN = 1; // UARTx transmitter is enabled. UxTX pin is controlled by UARTx (if ON = 1)
     U1BRG = CALCULATE_UXBRG(uartSettings->baudRate);
     U1MODEbits.ON = 1; // UARTx is enabled. UARTx pins are controlled by UARTx as defined by UEN<1:0> and UTXEN control bits
-    IPC28bits.U1RXIP = U1_INTERRUPT_PRIORITY; // set interrupt priority
-    IPC28bits.U1TXIP = U1_INTERRUPT_PRIORITY;
-    U1_RX_IECXSET = U1_RX_BIT; // enable RX interrupt
+    SYS_INT_VectorPrioritySet(INT_VECTOR_UART1_RX, INTERRUPT_PRIORITY); // set TX/RX interrupt priority
+    SYS_INT_VectorPrioritySet(INT_VECTOR_UART1_TX, INTERRUPT_PRIORITY); // set TX/RX interrupt priority
+    SYS_INT_SourceEnable(INT_SOURCE_USART_1_RECEIVE); // enable RX interrupt
 }
 
 /**
@@ -96,11 +83,10 @@ void Uart1Disable() {
     // Disable module and ensure default register states
     U1MODECLR = 0xFFFFFFFF;
     U1STACLR = 0xFFFFFFFF;
-    U1_RX_IECXCLR = U1_RX_BIT; // disable RX interrupt
-    U1_TX_IECXCLR = U1_TX_BIT; // disable TX interrupt
-    U1_RX_IFSXCLR = U1_RX_BIT; // clear RX interrupt flag
-    U1_TX_IFSXCLR = U1_TX_BIT; // clear TX interrupt flag
-    PMD5bits.U1MD = 1; // disable peripheral
+    SYS_INT_SourceDisable(INT_SOURCE_USART_1_RECEIVE); // disable RX interrupt
+    SYS_INT_SourceDisable(INT_SOURCE_USART_1_TRANSMIT); // disable TX interrupt
+    SYS_INT_SourceStatusClear(INT_SOURCE_USART_1_RECEIVE); // clear RX interrupt flag
+    SYS_INT_SourceStatusClear(INT_SOURCE_USART_1_TRANSMIT); // clear TX interrupt flag
 
     // Clear software buffers
     Uart1ClearRxBuffer();
@@ -120,7 +106,7 @@ void Uart1Disable() {
  */
 size_t Uart1IsGetReady() {
     if (U1STAbits.URXDA == 1) { // trigger interrupt if data available
-        U1_RX_IFSXSET = U1_RX_BIT;
+        SYS_INT_SourceStatusSet(INT_SOURCE_USART_1_RECEIVE);
     }
     if (U1STAbits.OERR == 1) {
         U1STAbits.OERR = 0; // clear flag and re-enable UART if hardware buffer overrun
@@ -165,9 +151,9 @@ size_t Uart1IsPutReady() {
 void Uart1PutChar(const char byte) {
     txBuffer[txBufferIn++] = byte;
     txBufferIn &= (UART1_BUFFER_SIZE - 1); // overflow index at buffer size
-    if (IEC3bits.U1TXIE == 0) {
-        U1_TX_IFSXSET = U1_TX_BIT; // set TX interrupt flag
-        U1_TX_IECXSET = U1_TX_BIT; // enable TX interrupt
+    if (SYS_INT_SourceIsEnabled(INT_SOURCE_USART_1_TRANSMIT) == false) {
+        SYS_INT_SourceStatusSet(INT_SOURCE_USART_1_TRANSMIT); // set TX interrupt flag
+        SYS_INT_SourceEnable(INT_SOURCE_USART_1_TRANSMIT); // enable TX interrupt
     }
 }
 
@@ -268,15 +254,15 @@ void __ISR(_UART1_RX_VECTOR) Uart1RxInterrupt() {
             rxBufferIn &= (UART1_BUFFER_SIZE - 1); // overflow index at buffer size
         }
     }
-    U1_RX_IFSXCLR = U1_RX_BIT; // data received immediately before clearing UxRXIF will be unhandled, URXDA therefore must be polled to 'manually' set UxRXIF
+    SYS_INT_SourceStatusClear(INT_SOURCE_USART_1_RECEIVE); // clear RX interrupt flag
 }
 
 /**
  * UART TX interrupt service routine.
  */
 void __ISR(_UART1_TX_VECTOR) Uart1TxInterrupt() {
-    U1_TX_IECXCLR = U1_TX_BIT; // disable interrupt to avoid nested interrupt
-    U1_TX_IFSXCLR = U1_TX_BIT; // clear interrupt flag
+    SYS_INT_SourceDisable(INT_SOURCE_USART_1_TRANSMIT); // disable TX interrupt to avoid nested interrupt
+    SYS_INT_SourceStatusClear(INT_SOURCE_USART_1_TRANSMIT); // clear TX interrupt flag
     while (U1STAbits.UTXBF == 0) { // repeat while hardware buffer not full
         if (txBufferOut == txBufferIn) { // if txBuffer empty
             return;
@@ -284,7 +270,7 @@ void __ISR(_UART1_TX_VECTOR) Uart1TxInterrupt() {
         U1TXREG = txBuffer[txBufferOut++]; // send data to hardware buffer and increment index
         txBufferOut &= (UART1_BUFFER_SIZE - 1); // overflow index at buffer size
     }
-    U1_TX_IECXSET = U1_TX_BIT; // re-enable interrupt
+    SYS_INT_SourceEnable(INT_SOURCE_USART_1_TRANSMIT); // re-enable TX interrupt
 }
 
 //------------------------------------------------------------------------------

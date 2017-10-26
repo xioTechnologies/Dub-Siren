@@ -13,22 +13,10 @@
 
 #include "Dac.h"
 #include "MathHelpers.h"
-#include <sys/attribs.h> // __ISR
+#include "system/int/sys_int.h"
 #include "system_config.h" // SYS_CLK_BUS_REFERENCE_1
 #include "Timer/Timer.h"
 #include <xc.h>
-
-//------------------------------------------------------------------------------
-// Definitions
-
-#define SPI1TX_IFSXCLR IFS3CLR
-#define SPI1TX_IECXSET IEC3SET
-#define SPI1TX_INT_BIT (1 << 15)
-
-#define T1_IFSXCLR IFS0CLR
-#define T1_IFSXSET IFS0SET
-#define T1_IECXSET IEC0SET
-#define T1_INT_BIT (1 << 4)
 
 //------------------------------------------------------------------------------
 // Variable declarations
@@ -62,14 +50,14 @@ void DacInitialise(void (*audioUpdate)()) {
     SPI1CONbits.ON = 1; // SPI/I2S module is enabled
 
     // Configure timer for for audio update interrupt (software triggered)
-    IPC1bits.T1IP = 5; // set interrupt priority
-    T1_IFSXCLR = T1_INT_BIT; // clear interrupt flag
-    T1_IECXSET = T1_INT_BIT; // enable interrupt
+    SYS_INT_VectorPrioritySet(_TIMER_1_VECTOR, INT_PRIORITY_LEVEL5); // set interrupt priority
+    SYS_INT_SourceStatusClear(INT_SOURCE_TIMER_1); // clear interrupt flag
+    SYS_INT_SourceEnable(INT_SOURCE_TIMER_1); // enable interrupt
 
     // Configure SPI interrupt
-    IPC27bits.SPI1TXIP = 6; // set interrupt priority
-    SPI1TX_IFSXCLR = SPI1TX_INT_BIT; // clear interrupt flag
-    SPI1TX_IECXSET = SPI1TX_INT_BIT; // enable interrupt
+    SYS_INT_VectorPrioritySet(_SPI1_TX_VECTOR, INT_PRIORITY_LEVEL6); // set interrupt priority
+    SYS_INT_SourceStatusClear(INT_SOURCE_SPI_1_TRANSMIT); // clear interrupt flag
+    SYS_INT_SourceEnable(INT_SOURCE_SPI_1_TRANSMIT); // enable interrupt
 }
 
 /**
@@ -78,8 +66,8 @@ void DacInitialise(void (*audioUpdate)()) {
  */
 void __ISR(_SPI1_TX_VECTOR) Spi1TXInterrupt() {
     SPI1BUF = buffer;
-    T1_IFSXSET = T1_INT_BIT; // trigger lower priority audio update interrupt
-    SPI1TX_IFSXCLR = SPI1TX_INT_BIT; // clear interrupt flag
+    SYS_INT_SourceStatusSet(INT_SOURCE_TIMER_1); // trigger lower priority audio update interrupt
+    SYS_INT_SourceStatusClear(INT_SOURCE_SPI_1_TRANSMIT); // clear interrupt flag
 }
 
 /**
@@ -88,7 +76,7 @@ void __ISR(_SPI1_TX_VECTOR) Spi1TXInterrupt() {
  */
 void __ISR(_TIMER_1_VECTOR) Timer1Interrupt() {
     audioUpdateFunction();
-    T1_IFSXCLR = T1_INT_BIT; // clear interrupt flag
+    SYS_INT_SourceStatusClear(INT_SOURCE_TIMER_1); // clear interrupt flag
 }
 
 /**

@@ -13,8 +13,7 @@
 #include <xc.h>
 #include "Potentiometers.h"
 #include <stdint.h>
-#include <sys/attribs.h>
-#include <proc/p32mz2048efh064.h> // __ISR
+#include "system/int/sys_int.h"
 
 //------------------------------------------------------------------------------
 // Definitions
@@ -46,11 +45,6 @@ typedef struct {
 } AdcDataAccumulator;
 
 #define SAMC_VALUE (100)
-
-#define ADCEOS_IFSXCLR IFS6CLR
-#define ADCEOS_IECXCLR IEC6CLR
-#define ADCEOS_IECXSET IEC6SET
-#define ADCEOS_INT_BIT (1 << 0)
 
 //------------------------------------------------------------------------------
 // Variables
@@ -155,9 +149,9 @@ void PotentiometersInitialise() {
 
     // Configure end of scan interrupt
     ADCCON2bits.EOSIEN = 1; // Interrupt will be generated when EOSRDY bit is set
-    IPC48bits.ADCEOSIP = 4; // set interrupt priority
-    ADCEOS_IFSXCLR = ADCEOS_INT_BIT; // clear interrupt flag
-    ADCEOS_IECXSET = ADCEOS_INT_BIT; // enable interrupt
+    SYS_INT_VectorPrioritySet(_ADC_EOS_VECTOR, INT_PRIORITY_LEVEL4); // set interrupt priority
+    SYS_INT_SourceStatusClear(INT_SOURCE_ADC_END_OF_SCAN); // clear interrupt flag
+    SYS_INT_SourceEnable(INT_SOURCE_ADC_END_OF_SCAN); // enable interrupt
 
     // Trigger first conversion
     ADCCON3bits.GSWTRG = 1;
@@ -168,12 +162,12 @@ void PotentiometersInitialise() {
  * 1.0.
  */
 void PotentiometersGetValues(float potentiometers[NUMBER_OF_POTENTIOMETERS]) {
-    ADCEOS_IECXCLR = ADCEOS_INT_BIT; // disable interrupt
+    SYS_INT_SourceDisable(INT_SOURCE_ADC_END_OF_SCAN); // enable interrupt
     int index;
     for (index = 0; index < NUMBER_OF_POTENTIOMETERS; index++) {
         potentiometers[index] = currentPotentiometers[index];
     }
-    ADCEOS_IECXSET = ADCEOS_INT_BIT; // enable interrupt
+    SYS_INT_SourceEnable(INT_SOURCE_ADC_END_OF_SCAN); // enable interrupt
 }
 
 /**
@@ -224,7 +218,7 @@ void __ISR(_ADC_EOS_VECTOR) AdcEndOfScanInterrupt() {
     ADCCON2bits.EOSRDY = 0;
 
     // Clear interrupt flag
-    ADCEOS_IFSXCLR = ADCEOS_INT_BIT;
+    SYS_INT_SourceStatusClear(INT_SOURCE_ADC_END_OF_SCAN); // clear interrupt flag
 
     // Trigger next conversion
     ADCCON3bits.GSWTRG = 1;
