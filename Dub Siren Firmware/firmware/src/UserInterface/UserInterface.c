@@ -280,13 +280,13 @@ void UserInterfaceDoTasks() {
  * @brief Loads default presets if all buttons and keys held for a 3 seconds.
  */
 static void CheckForFactoryReset() {
-    const Ticks64 previousTicks = TimerGetTicks64();
+    const uint64_t previousTicks = TimerGetTicks64();
     do {
         if (AnyOrAllButtonOrKeyIsHeld(false) == true) {
             return; // return if any buttons or keys not held
         }
-        const Ticks64 currentTicks = TimerGetTicks64();
-        if ((currentTicks.value - previousTicks.value) >= (3 * TIMER_TICKS_PER_SECOND)) {
+        const uint64_t currentTicks = TimerGetTicks64();
+        if ((currentTicks - previousTicks) >= (3 * timerTicksPerSecond)) {
 
             // Load default presets
             RestoreDefaultPresets();

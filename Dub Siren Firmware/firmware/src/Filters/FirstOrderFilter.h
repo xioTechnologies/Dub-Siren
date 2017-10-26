@@ -16,7 +16,8 @@
 // Definitions
 
 /**
- * @brief First-order filter structure.
+ * @brief First-order filter structure.  Structure members used internally and
+ * should not be used by the user application.
  */
 typedef struct {
     bool isHighPass; // else is low-pass

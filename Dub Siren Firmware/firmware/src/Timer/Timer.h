@@ -11,45 +11,21 @@
 // Includes
 
 #include <stdint.h>
-#include "system_config.h" // SYS_CLK_BUS_PERIPHERAL_3
 
 //------------------------------------------------------------------------------
-// Definitions
+// Variable declarations
 
-/**
- * @bief Number of timer ticks per second.  Used for timing calculations.
- */
-#define TIMER_TICKS_PER_SECOND ((uint64_t) SYS_CLK_BUS_PERIPHERAL_3)
-
-/**
- * @brief 32-bit timer ticks type.
- */
-typedef uint32_t Ticks32;
-
-/**
- * @brief 64-bit timer ticks type.
- */
-typedef union {
-    uint64_t value;
-
-    struct {
-
-        union {
-            uint32_t dword0;
-            Ticks32 ticks32;
-        }; // least-significant dword
-        uint32_t dword1; // most-significant dword
-    };
-} Ticks64;
+extern const uint32_t timerTicksPerSecond;
 
 //------------------------------------------------------------------------------
 // Function prototypes
 
 void TimerInitialise();
-Ticks32 TimerGetTicks32();
-Ticks64 TimerGetTicks64();
-void TimerDelay(uint32_t milliseconds);
-void TimerDelayMicroseconds(uint32_t microseconds);
+void TimerDisable();
+uint32_t TimerGetTicks32();
+uint64_t TimerGetTicks64();
+void TimerDelay(const uint32_t milliseconds);
+void TimerDelayMicroseconds(const uint32_t microseconds);
 
 #endif
 

@@ -17,13 +17,13 @@
 // Definitions
 
 /**
- * @brief Debounced button structure.  Must be initialised using
- * DebouncedButtonInitialise.
+ * @brief Debounced button structure.  Structure members used internally and
+ * should not be used by the user application.
  */
 typedef struct {
     volatile unsigned int* port;
     int portBit;
-    Ticks64 ticks;
+    uint64_t ticks;
     bool wasPressed;
     bool isHeld;
 } DebouncedButton;

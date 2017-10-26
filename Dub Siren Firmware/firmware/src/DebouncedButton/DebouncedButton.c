@@ -15,7 +15,7 @@
 /**
  * @breif Debounce holdoff period in timer ticks.
  */
-#define HOLDOFF_PERIOD (TIMER_TICKS_PER_SECOND / 100)
+#define HOLDOFF_PERIOD (timerTicksPerSecond / 100)
 
 //------------------------------------------------------------------------------
 // Function prototypes
@@ -34,7 +34,7 @@ static inline __attribute__((always_inline)) void Update(DebouncedButton * const
 void DebouncedButtonInitialise(DebouncedButton * const debouncedButton, volatile unsigned int* const port, const int portBit) {
     debouncedButton->port = port;
     debouncedButton->portBit = portBit;
-    debouncedButton->ticks.value = 0;
+    debouncedButton->ticks = 0;
     debouncedButton->wasPressed = false;
     debouncedButton->isHeld = false;
 }
@@ -68,7 +68,7 @@ bool DebouncedButtonIsHeld(DebouncedButton * const debouncedButton) {
  * @param debouncedButton Debounced button structure to be updated.
  */
 static inline __attribute__((always_inline)) void Update(DebouncedButton * const debouncedButton) {
-    const Ticks64 currentTicks = TimerGetTicks64();
+    const uint64_t currentTicks = TimerGetTicks64();
     if ((*debouncedButton->port & (1 << debouncedButton->portBit)) != 0) {
         debouncedButton->ticks = currentTicks;
         if (debouncedButton->isHeld == false) {
@@ -76,7 +76,7 @@ static inline __attribute__((always_inline)) void Update(DebouncedButton * const
         }
         debouncedButton->isHeld = true;
     } else {
-        if (currentTicks.value >= (debouncedButton->ticks.value + HOLDOFF_PERIOD)) {
+        if (currentTicks >= (debouncedButton->ticks + HOLDOFF_PERIOD)) {
             debouncedButton->isHeld = false;
         }
     }

@@ -7,22 +7,34 @@
 //------------------------------------------------------------------------------
 // Includes
 
-#include <stdint.h> // UINT32_MAX
+#include "system_config.h" // SYS_CLK_BUS_PERIPHERAL_3
 #include "system/int/sys_int.h"
 #include "Timer.h"
 #include <xc.h>
 
 //------------------------------------------------------------------------------
+// Definitions
+
+typedef union {
+    uint64_t value;
+
+    struct {
+        uint32_t dword0; // least-significant dword
+        uint32_t dword1; // most-significant dword
+    };
+} Uint64Union;
+
+//------------------------------------------------------------------------------
 // Variable declarations
 
-static volatile Ticks64 timerOverflowCounter;
+const uint32_t timerTicksPerSecond = SYS_CLK_BUS_PERIPHERAL_3;
+static volatile uint32_t timerOverflowCounter;
 
 //------------------------------------------------------------------------------
 // Functions
 
 /**
- * @brief Initialises module.  This function should be called once on system
- * start up.
+ * @brief Initialises the timer.
  */
 void TimerInitialise() {
     T4CONbits.T32 = 1;
@@ -33,12 +45,18 @@ void TimerInitialise() {
 }
 
 /**
- * @brief Gets 32-bit timer value.  This function call is quicker than
- * TimerGetTicks64 and so may be preferable if the 32-bit ticks overflow period
- * is not too short.
+ * @brief Disables the timer.
+ */
+void TimerDisable() {
+    T4CONbits.ON = 0; // stop timer
+    SYS_INT_SourceDisable(INT_SOURCE_TIMER_5); // disable interrupt
+}
+
+/**
+ * @brief Gets 32-bit timer value.
  * @return 32-bit timer value.
  */
-Ticks32 TimerGetTicks32() {
+uint32_t TimerGetTicks32() {
     return TMR4; // read 32-bit timer value
 }
 
@@ -46,47 +64,45 @@ Ticks32 TimerGetTicks32() {
  * @brief Gets 64-bit timer value.
  * @return 64-bit timer value.
  */
-Ticks64 TimerGetTicks64() {
-    Ticks64 sampledTimerOverflowCounter;
-    Ticks64 ticks64;
+uint64_t TimerGetTicks64() {
+    Uint64Union ticks64;
     do {
-        sampledTimerOverflowCounter = timerOverflowCounter;
-        ticks64.dword1 = 0;
+        ticks64.dword1 = timerOverflowCounter; // must read this value first
         ticks64.dword0 = TMR4; // read 32-bit timer value
-    } while (sampledTimerOverflowCounter.dword0 != timerOverflowCounter.dword0); // avoid seconds overflow hazard
-    ticks64.value += sampledTimerOverflowCounter.value;
-    return ticks64;
+    } while (ticks64.dword1 != timerOverflowCounter); // avoid seconds overflow hazard
+    return ticks64.value;
 }
 
 /**
  * @brief Blocking delay in milliseconds.
  * @param milliseconds Delay in milliseconds.
  */
-void TimerDelay(uint32_t milliseconds) {
-    const Ticks64 previousTicks = TimerGetTicks64();
-    Ticks64 currentTicks;
+void TimerDelay(const uint32_t milliseconds) {
+    uint64_t currentTicks = TimerGetTicks64();
+    const uint64_t endTicks = currentTicks + ((uint64_t) milliseconds * (uint64_t) (timerTicksPerSecond / 1000));
     do {
         currentTicks = TimerGetTicks64();
-    } while ((currentTicks.value - previousTicks.value) < (milliseconds * (TIMER_TICKS_PER_SECOND / 1000)));
+    } while (currentTicks < endTicks);
 }
 
 /**
- * @brief Blocking delay in microseconds.
- * @param milliseconds Delay in microseconds.
+ * @brief Blocking delay in microseconds.  This function should not be used for
+ * delays approaching 2^32 microseconds.
+ * @param microseconds Delay in microseconds.
  */
-void TimerDelayMicroseconds(uint32_t microseconds) {
-    const Ticks64 previousTicks = TimerGetTicks64();
-    Ticks64 currentTicks;
+void TimerDelayMicroseconds(const uint32_t microseconds) {
+    const uint32_t startTicks = TimerGetTicks32();
+    uint32_t currentTicks;
     do {
-        currentTicks = TimerGetTicks64();
-    } while ((currentTicks.value - previousTicks.value) < (microseconds * (TIMER_TICKS_PER_SECOND / 1000000)));
+        currentTicks = TimerGetTicks32();
+    } while ((currentTicks - startTicks) < (microseconds * (timerTicksPerSecond / 1000000)));
 }
 
 /**
  * @brief Timer overflow interrupt to increment overflow counter.
  */
-void __attribute__((interrupt(), vector(_TIMER_5_VECTOR))) Timer5Interrupt() {
-    timerOverflowCounter.value += (uint64_t) UINT32_MAX;
+void __ISR(_TIMER_5_VECTOR) Timer5Interrupt() {
+    timerOverflowCounter++;
     SYS_INT_SourceStatusClear(INT_SOURCE_TIMER_5); // clear interrupt flag
 }
 

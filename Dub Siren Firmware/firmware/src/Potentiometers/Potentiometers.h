@@ -17,7 +17,7 @@
 #define NUMBER_OF_POTENTIOMETERS (9)
 
 /**
- * @brief Potentiometer names.
+ * @brief Potentiometer index names.
  */
 typedef enum {
     PotentiometerIndexLfoWaveform,
