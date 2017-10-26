@@ -130,6 +130,8 @@ fprintf(fileWrite, '};\n\n');
 
 dutyCycle = 0.1;
 
+fprintf(fileWrite, '#define HALF_PULSE_DUTY_CYCLE %0.6ff\n\n', dutyCycle / 2);
+
 pulseharmonics = 1:(maximumFrequency / minimumFrequency);
 
 fprintf(fileWrite, '#define NUMBER_OF_PULSE_WAVEFORMS %i\n\n', length(pulseharmonics));

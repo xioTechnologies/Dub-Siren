@@ -150,10 +150,10 @@ float WaveformsBandwidthLimitedPulse(const float normalisedPeriod, const float f
 
     // Use unlimited-bandwidth waveform for low frequencies
     if (frequency < MINIMUM_FREQUENCY) {
-        if (normalisedPeriod < 0.05f) {
+        if (normalisedPeriod < HALF_PULSE_DUTY_CYCLE) {
             return 1.0f;
         }
-        if (normalisedPeriod > 0.95f) {
+        if (normalisedPeriod > (1.0f - HALF_PULSE_DUTY_CYCLE)) {
             return 1.0f;
         } else {
             return -1.0f;
