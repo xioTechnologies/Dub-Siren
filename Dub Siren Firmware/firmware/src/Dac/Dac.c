@@ -39,7 +39,7 @@ void DacInitialise(void (*audioUpdate)()) {
     audioUpdateFunction = audioUpdate;
 
     // Configure I2S
-    SPI1BRG = (int) ((((float) SYS_CLK_BUS_REFERENCE_1 / (2.0f * 6144000.0f)) - 1.0f) + 0.5f); // 6.144 MHz
+    SPI1BRG = (unsigned int) ((((float) SYS_CLK_BUS_REFERENCE_1 / (2.0f * 6144000.0f)) - 1.0f) + 0.5f); // 6.144 MHz
     SPI1CONbits.MCLKSEL = 1; // REFCLKO1 is used by the Baud Rate Generator
     SPI1CONbits.MODE16 = 1; // 24-bit Data, 32-bit FIFO, 32-bit Channel/64-bit Frame
     SPI1CONbits.MODE32 = 1; // 24-bit Data, 32-bit FIFO, 32-bit Channel/64-bit Frame

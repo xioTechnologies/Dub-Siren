@@ -66,7 +66,7 @@ static void SavePresetsToFromEeprom();
 static void CheckForFactoryReset();
 static bool AnyOrAllButtonOrKeyIsHeld(const bool isHeldState);
 static void ReadPotentiometers(SynthesiserParameters * const synthesiserParameters);
-static int InterpretDiscretePotentiometer(const float potentiometer, const int numberOfValues, const bool omitDeadbands);
+static int InterpretDiscretePotentiometer(const float potentiometer, const unsigned int numberOfValues, const bool omitDeadbands);
 static bool ComparePotentiometers(const float potentiometerA, const float potentiometerB);
 static void PrintSynthesiserParameters(const SynthesiserParameters * const synthesiserParameters);
 
@@ -156,7 +156,7 @@ static void LoadPresetsFromEeprom() {
     EepromRead(&i2cBitBang, 0, (char*) &eepromData, sizeof (eepromData));
 
     // Verify checksum
-    int index;
+    unsigned int index;
     for (index = 0; index < sizeof (eepromData.presets); index++) {
         eepromData.checksum += (int32_t) ((uint8_t*) (&eepromData))[index];
     }
@@ -174,7 +174,7 @@ static void LoadPresetsFromEeprom() {
  * @brief Loads default presets.
  */
 static void RestoreDefaultPresets() {
-    int presetKeyIndex;
+    unsigned int presetKeyIndex;
     for (presetKeyIndex = 0; presetKeyIndex < NUMBER_OF_PRESET_KEYS; presetKeyIndex++) {
         eepromData.presets[presetKeyIndex] = DEFAULT_SYTHESISER_PARAMETERS;
     }
@@ -188,7 +188,7 @@ static void SavePresetsToFromEeprom() {
 
     // Calculate checksum
     eepromData.checksum = 0;
-    int index;
+    unsigned int index;
     for (index = 0; index < sizeof (eepromData.presets); index++) {
         eepromData.checksum -= (int32_t) ((uint8_t*) (&eepromData))[index];
     }
@@ -211,7 +211,7 @@ void UserInterfaceDoTasks() {
     // Trigger button
     bool trigger = false;
     if (DebouncedButtonWasPressed(&triggerSaveButton) == true) {
-        int index;
+        unsigned int index;
         for (index = 0; index < NUMBER_OF_PRESET_KEYS; index++) {
             if (DebouncedButtonIsHeld(&presetKeys[index]) == true) {
                 undoIgnorePotentiometers = true;
@@ -234,7 +234,7 @@ void UserInterfaceDoTasks() {
     }
 
     // Preset keys
-    int presetKeyIndex;
+    unsigned int presetKeyIndex;
     for (presetKeyIndex = 0; presetKeyIndex < NUMBER_OF_PRESET_KEYS; presetKeyIndex++) {
         if (DebouncedButtonWasPressed(&presetKeys[presetKeyIndex]) == true) {
             if (DebouncedButtonIsHeld(&triggerSaveButton) == true) {
@@ -310,7 +310,7 @@ static void CheckForFactoryReset() {
  * @return
  */
 static bool AnyOrAllButtonOrKeyIsHeld(const bool isHeldState) {
-    int index;
+    unsigned int index;
     for (index = 0; index < NUMBER_OF_PRESET_KEYS; index++) {
         if (DebouncedButtonIsHeld(&presetKeys[index]) == isHeldState) {
             return true;
@@ -341,7 +341,7 @@ static void ReadPotentiometers(SynthesiserParameters * const synthesiserParamete
     // Ignore potentiometers
     static float potentiometersWhenIgnored[NUMBER_OF_POTENTIOMETERS];
     if (ignorePotentiometers == true) {
-        int index;
+        unsigned int index;
         for (index = 0; index < NUMBER_OF_POTENTIOMETERS; index++) {
             potentiometerIgnored[index] = true;
             potentiometersWhenIgnored[index] = potentiometers[index];
@@ -351,7 +351,7 @@ static void ReadPotentiometers(SynthesiserParameters * const synthesiserParamete
 
     // Undo ignore potentiometers
     if (undoIgnorePotentiometers == true) {
-        int index;
+        unsigned int index;
         for (index = 0; index < NUMBER_OF_POTENTIOMETERS; index++) {
             potentiometerIgnored[index] = false;
         }
@@ -359,7 +359,7 @@ static void ReadPotentiometers(SynthesiserParameters * const synthesiserParamete
     }
 
     // LFO waveform
-    int index = PotentiometerIndexLfoWaveform;
+    unsigned int index = PotentiometerIndexLfoWaveform;
     if (potentiometerIgnored[index] == true) {
         potentiometerIgnored[index] = ComparePotentiometers(potentiometers[index], potentiometersWhenIgnored[index]);
     } else {
@@ -477,17 +477,17 @@ static bool ComparePotentiometers(const float potentiometerA, const float potent
  * @param omitDeadbands True to use deadbands.
  * @return Discrete value of potentiometer.
  */
-static int InterpretDiscretePotentiometer(const float potentiometer, const int numberOfValues, const bool useDeadbands) {
+static int InterpretDiscretePotentiometer(const float potentiometer, const unsigned int numberOfValues, const bool useDeadbands) {
     if (useDeadbands == false) {
         return (int) ROUND(potentiometer * (float) (numberOfValues - 1));
     }
-    const int numberOfValuesIncludingDeadbands = numberOfValues + numberOfValues - 1;
-    const int valueIncludingDeadbands = (int) ROUND(potentiometer * (float) (numberOfValuesIncludingDeadbands - 1));
+    const unsigned int numberOfValuesIncludingDeadbands = numberOfValues + numberOfValues - 1;
+    const unsigned int valueIncludingDeadbands = (unsigned int) ROUND(potentiometer * (float) (numberOfValuesIncludingDeadbands - 1));
     if (valueIncludingDeadbands & 0b1) { // if value is odd
         return -1;
     } else {
 
-        return valueIncludingDeadbands >> 1;
+        return (int) (valueIncludingDeadbands >> 1);
     }
 }
 

@@ -65,12 +65,12 @@ uint32_t TimerGetTicks32() {
  * @return 64-bit timer value.
  */
 uint64_t TimerGetTicks64() {
-    Uint64Union ticks64;
+    Uint64Union uint64Union;
     do {
-        ticks64.dword1 = timerOverflowCounter; // must read this value first
-        ticks64.dword0 = TMR4; // read 32-bit timer value
-    } while (ticks64.dword1 != timerOverflowCounter); // avoid seconds overflow hazard
-    return ticks64.value;
+        uint64Union.dword1 = timerOverflowCounter; // must read this value first
+        uint64Union.dword0 = TMR4; // read 32-bit timer value
+    } while (uint64Union.dword1 != timerOverflowCounter); // avoid seconds overflow hazard
+    return uint64Union.value;
 }
 
 /**

@@ -46,7 +46,7 @@ static bool trigger;
 static bool gate = true;
 static FirstOrderFilter gateGainLowPassFilter;
 static float delayBuffer[DELAY_BUFFER_SIZE];
-static int delayBufferIndex = 0;
+static unsigned int delayBufferIndex = 0;
 static FirstOrderFilter delayTimeLowPassFilter;
 static CascadeFilter delayFilter;
 

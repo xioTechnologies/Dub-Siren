@@ -163,7 +163,7 @@ void PotentiometersInitialise() {
  */
 void PotentiometersGetValues(float potentiometers[NUMBER_OF_POTENTIOMETERS]) {
     SYS_INT_SourceDisable(INT_SOURCE_ADC_END_OF_SCAN); // enable interrupt
-    int index;
+    unsigned int index;
     for (index = 0; index < NUMBER_OF_POTENTIOMETERS; index++) {
         potentiometers[index] = currentPotentiometers[index];
     }

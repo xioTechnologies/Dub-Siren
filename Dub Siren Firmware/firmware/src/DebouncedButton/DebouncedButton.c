@@ -31,7 +31,7 @@ static inline __attribute__((always_inline)) void Update(DebouncedButton * const
  * @param port Port register, e.g. PORTB.
  * @param portBit Port bit number, e.g. 7 for RB7.
  */
-void DebouncedButtonInitialise(DebouncedButton * const debouncedButton, volatile unsigned int* const port, const int portBit) {
+void DebouncedButtonInitialise(DebouncedButton * const debouncedButton, volatile unsigned int* const port, const unsigned int portBit) {
     debouncedButton->port = port;
     debouncedButton->portBit = portBit;
     debouncedButton->ticks = 0;

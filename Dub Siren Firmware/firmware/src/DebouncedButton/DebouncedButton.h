@@ -22,7 +22,7 @@
  */
 typedef struct {
     volatile unsigned int* port;
-    int portBit;
+    unsigned int portBit;
     uint64_t ticks;
     bool wasPressed;
     bool isHeld;
@@ -31,7 +31,7 @@ typedef struct {
 //------------------------------------------------------------------------------
 // Function prototypes
 
-void DebouncedButtonInitialise(DebouncedButton * const debouncedButton, volatile unsigned int* const port, const int portBit);
+void DebouncedButtonInitialise(DebouncedButton * const debouncedButton, volatile unsigned int* const port, const unsigned int portBit);
 bool DebouncedButtonWasPressed(DebouncedButton * const debouncedButton);
 bool DebouncedButtonIsHeld(DebouncedButton * const debouncedButton);
 

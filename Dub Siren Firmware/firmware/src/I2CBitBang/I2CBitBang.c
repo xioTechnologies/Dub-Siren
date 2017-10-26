@@ -36,8 +36,8 @@ void I2CBitBangInitialise(I2cBitBang * const i2cBitBang, void (*waitHalfClockCyc
  * @param i2cBitBang I2C bit-bang structure.
  */
 void I2CBitBangBusClear(const I2cBitBang * const i2cBitBang) {
-    int i;
-    for (i = 0; i < 9; i++) {
+    unsigned int index;
+    for (index = 0; index < 9; index++) {
         i2cBitBang->waitHalfClockCycle();
         if (i2cBitBang->readSda() == true) { // sample data during clock high period
             break; // stop once SDA is released otherwise it may get stuck again

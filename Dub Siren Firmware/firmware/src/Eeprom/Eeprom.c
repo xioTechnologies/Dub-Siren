@@ -44,10 +44,10 @@ void EepromRead(const I2cBitBang * const i2cBitBang, const unsigned int address,
     I2CBitBangStart(i2cBitBang);
     I2CBitBangSend(i2cBitBang, I2C_READ_ADDRESS(I2C_ADDRESS));
     if (numberOfBytes > 0) {
-        unsigned int i = 0;
+        unsigned int index = 0;
         while (true) {
-            destination[i] = I2CBitBangReceive(i2cBitBang);
-            if (++i < numberOfBytes) {
+            destination[index] = I2CBitBangReceive(i2cBitBang);
+            if (++index < numberOfBytes) {
                 I2CBitBangAck(i2cBitBang);
             } else {
                 I2CBitBangNack(i2cBitBang);
@@ -102,9 +102,9 @@ static void StartSequence(const I2cBitBang * const i2cBitBang, const unsigned in
  */
 void EepromEraseAll(const I2cBitBang * const i2cBitBang) {
     const char blankPage[EEPROM_PAGE_SIZE] = {[0 ... (EEPROM_PAGE_SIZE - 1)] = 0xFF};
-    int i;
-    for (i = 0; i < (EEPROM_SIZE / EEPROM_PAGE_SIZE); i++) {
-        EepromWrite(i2cBitBang, (i * EEPROM_PAGE_SIZE), (char*) blankPage, sizeof (blankPage));
+    unsigned int index;
+    for (index = 0; index < (EEPROM_SIZE / EEPROM_PAGE_SIZE); index++) {
+        EepromWrite(i2cBitBang, (index * EEPROM_PAGE_SIZE), (char*) blankPage, sizeof (blankPage));
     }
 }
 

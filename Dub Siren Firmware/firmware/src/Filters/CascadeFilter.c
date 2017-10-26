@@ -21,10 +21,10 @@
  * @param isHighPass True if high-pass filter, False if low-pass filter.
  * @param numberOfFilters Number of filters in the cascade.
  */
-void CascadeFilterSetCornerFrequency(CascadeFilter * const cascadeFilter, const float cornerFrequency, const float sampleFrequency, const bool isHighPass, const int numberOfFilters) {
+void CascadeFilterSetCornerFrequency(CascadeFilter * const cascadeFilter, const float cornerFrequency, const float sampleFrequency, const bool isHighPass, const unsigned int numberOfFilters) {
     cascadeFilter->numberOfFilters = CLAMP(numberOfFilters, 1, MAXIMUM_NUMBER_OF_CASCADED_FILTERS);
     FirstOrderFilterSetCornerFrequency(&cascadeFilter->firstOrderFilter[0], cornerFrequency, sampleFrequency, isHighPass);
-    int index;
+    unsigned int index;
     for (index = 1; index < cascadeFilter->numberOfFilters; index++) {
         cascadeFilter->firstOrderFilter[index].isHighPass = isHighPass;
         cascadeFilter->firstOrderFilter[index].coefficient = cascadeFilter->firstOrderFilter[0].coefficient; // avoid repeated calculations
@@ -40,7 +40,7 @@ void CascadeFilterSetCornerFrequency(CascadeFilter * const cascadeFilter, const 
  */
 float CascadeFilterUpdate(CascadeFilter * const cascadeFilter, const float input) {
     float output = input;
-    int index;
+    unsigned int index;
     for (index = 0; index < cascadeFilter->numberOfFilters; index++) {
         output = FirstOrderFilterUpdate(&cascadeFilter->firstOrderFilter[index], output);
     }

@@ -28,14 +28,14 @@
  * should not be used by the user application.
  */
 typedef struct {
-    int numberOfFilters;
+    unsigned int numberOfFilters;
     FirstOrderFilter firstOrderFilter[MAXIMUM_NUMBER_OF_CASCADED_FILTERS];
 } CascadeFilter;
 
 //------------------------------------------------------------------------------
 // Function prototypes
 
-void CascadeFilterSetCornerFrequency(CascadeFilter * const cascadeFilter, const float cornerFrequency, const float sampleFrequency, const bool isHighPass, const int numberOfFilters);
+void CascadeFilterSetCornerFrequency(CascadeFilter * const cascadeFilter, const float cornerFrequency, const float sampleFrequency, const bool isHighPass, const unsigned int numberOfFilters);
 float CascadeFilterUpdate(CascadeFilter * const cascadeFilter, const float input);
 
 #endif

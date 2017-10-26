@@ -167,7 +167,7 @@ void Uart1WriteCharIfReady(const char byte) {
  * @param numberOfBytes Number of bytes.
  */
 void Uart1WriteCharArray(const char* const source, const size_t numberOfBytes) {
-    int index;
+    unsigned int index;
     for (index = 0; index < numberOfBytes; index++) {
         writeBuffer[writeBufferInIndex++ & READ_WRITE_BUFFER_INDEX_BIT_MASK] = source[index];
     }

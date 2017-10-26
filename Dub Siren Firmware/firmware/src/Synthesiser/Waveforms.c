@@ -48,10 +48,10 @@ static inline __attribute__((always_inline)) float InterpolateWaveformTable(cons
     const float indexFloor = floor(index);
     const float indexCeil = ceil(index);
     if (indexFloor == indexCeil) {
-        return waveformTable[(int) index];
+        return waveformTable[(unsigned int) index];
     }
-    const float amplitudeFloor = waveformTable[(int) indexFloor];
-    const float amplitudeCeil = waveformTable[(int) indexCeil];
+    const float amplitudeFloor = waveformTable[(unsigned int) indexFloor];
+    const float amplitudeCeil = waveformTable[(unsigned int) indexCeil];
     return MAP(index, indexFloor, indexCeil, amplitudeFloor, amplitudeCeil);
 }
 
@@ -84,8 +84,8 @@ float WaveformsBandwidthLimitedTriangle(const float normalisedPeriod, const floa
     }
 
     // Else use bandwidth-limited waveform
-    const int harmonic = (int) ((float) MAXIMUM_FREQUENCY / frequency); // intentionally rounded down
-    const int wavefromIndex = CLAMP(((harmonic - 1) / 2) - 1, 0, NUMBER_OF_TRIANGLE_WAVEFORMS - 1);
+    const unsigned int harmonic = (unsigned int) ((float) MAXIMUM_FREQUENCY / frequency); // intentionally rounded down
+    const unsigned int wavefromIndex = CLAMP(((harmonic - 1) / 2) - 1, 0, NUMBER_OF_TRIANGLE_WAVEFORMS - 1);
     return InterpolateWaveformTable(triangleTable[wavefromIndex], normalisedPeriod);
 }
 
@@ -109,8 +109,8 @@ float WaveformsBandwidthLimitedSawtooth(const float normalisedPeriod, const floa
     }
 
     // Else use bandwidth-limited waveform
-    const int harmonic = (int) ((float) MAXIMUM_FREQUENCY / frequency); // intentionally rounded down
-    const int wavefromIndex = CLAMP(harmonic - 2, 0, NUMBER_OF_SAWTOOTH_WAVEFORMS - 1);
+    const unsigned int harmonic = (unsigned int) ((float) MAXIMUM_FREQUENCY / frequency); // intentionally rounded down
+    const unsigned int wavefromIndex = CLAMP(harmonic - 2, 0, NUMBER_OF_SAWTOOTH_WAVEFORMS - 1);
     return InterpolateWaveformTable(sawtoothTable[wavefromIndex], normalisedPeriod);
 }
 
@@ -134,8 +134,8 @@ float WaveformsBandwidthLimitedSquare(const float normalisedPeriod, const float 
     }
 
     // Else use bandwidth-limited waveform
-    const int harmonic = (int) ((float) MAXIMUM_FREQUENCY / frequency); // intentionally rounded down
-    const int wavefromIndex = CLAMP(((harmonic - 1) / 2) - 1, 0, NUMBER_OF_SQUARE_WAVEFORMS - 1);
+    const unsigned int harmonic = (unsigned int) ((float) MAXIMUM_FREQUENCY / frequency); // intentionally rounded down
+    const unsigned int wavefromIndex = CLAMP(((harmonic - 1) / 2) - 1, 0, NUMBER_OF_SQUARE_WAVEFORMS - 1);
     return InterpolateWaveformTable(squareTable[wavefromIndex], normalisedPeriod);
 }
 
@@ -166,8 +166,8 @@ float WaveformsBandwidthLimitedPulse(const float normalisedPeriod, const float f
     }
 
     // Else use bandwidth-limited waveform
-    const int harmonic = (int) ((float) MAXIMUM_FREQUENCY / frequency); // intentionally rounded down
-    const int wavefromIndex = CLAMP(harmonic - 2, 0, NUMBER_OF_PULSE_WAVEFORMS - 1);
+    const unsigned int harmonic = (unsigned int) ((float) MAXIMUM_FREQUENCY / frequency); // intentionally rounded down
+    const unsigned int wavefromIndex = CLAMP(harmonic - 2, 0, NUMBER_OF_PULSE_WAVEFORMS - 1);
     return InterpolateWaveformTable(pulseTable[wavefromIndex], normalisedPeriod);
 }
 
@@ -181,7 +181,7 @@ float WaveformsBandwidthLimitedPulse(const float normalisedPeriod, const float f
  */
 float WaveformsOneBitNoise(const float frequency, const float sampleFrequency) {
     static float returnValue = 1.0f;
-    const int samplesPerUpdate = (int) (sampleFrequency / frequency);
+    const unsigned int samplesPerUpdate = (unsigned int) (sampleFrequency / frequency);
     static int sampleCounter = 0;
     if (sampleCounter++ >= samplesPerUpdate) {
         sampleCounter = 0;
@@ -266,7 +266,7 @@ float WaveformsSquare(const float normalisedPeriod, const float shape) {
  * @return Stepped triangle amplitude.
  */
 float WaveformsSteppedTriangle(const float normalisedPeriod, const float shape) {
-    const int numberOfSteps = 3 + ROUND(shape * 29.0f);
+    const unsigned int numberOfSteps = 3 + ROUND(shape * 29.0f);
     const float numberOfStepsMinusOne = (float) (numberOfSteps - 1);
     float normalisedWaveform;
     if (normalisedPeriod > 0.5f) {
@@ -284,7 +284,7 @@ float WaveformsSteppedTriangle(const float normalisedPeriod, const float shape) 
  * @return Stepped sawtooth amplitude.
  */
 float WaveformsSteppedSawtooth(const float normalisedPeriod, const float shape) {
-    const int numberOfSteps = 3 + ROUND(shape * 29.0f);
+    const unsigned int numberOfSteps = 3 + ROUND(shape * 29.0f);
     const float normalisedWaveform = floorf(normalisedPeriod * numberOfSteps) * (1.0f / (numberOfSteps - 1.0f));
     return 2.0f * (normalisedWaveform - 0.5f);
 }
