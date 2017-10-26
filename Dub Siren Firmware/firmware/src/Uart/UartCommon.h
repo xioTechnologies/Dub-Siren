@@ -12,7 +12,6 @@
 
 #include "stdbool.h"
 #include <stdint.h>
-#include "system_config.h" // SYS_CLK_BUS_PERIPHERAL_2
 
 //------------------------------------------------------------------------------
 // Definitions
@@ -48,35 +47,16 @@ typedef struct {
     bool invertDataLines;
 } UartSettings;
 
-/**
- * @brief Default UART settings.  Can be used to initialised a UartSettings
- * structure.
- */
-#define DEFAULT_UART_SETTINGS ((UartSettings) { \
-    .baudRate = 115200, \
-    .ctsRtsEnabled = false, \
-    .parityAndData = EightBitNoParity, \
-    .stopBits = OneStopBit, \
-    .invertDataLines = false, })
+//------------------------------------------------------------------------------
+// Variable declarations
 
-/**
- * @brief Calculates ideal UXBRG value as a float for a specified baud rate and
- * defined peripheral clock (PBCLK).  Assumes BRGH = 1.
- * @see Page 12 of "Section 21. UART".
- */
-#define CALCULATE_UXBRG_FLOAT(baudRate) ((float) SYS_CLK_BUS_PERIPHERAL_2 / (4.0f * (float) baudRate) - 1.0f)
+extern const UartSettings defaultUartSettings;
 
-/**
- * @brief Calculates UXBRG value as the rounded result of CALCULATE_UXBRG_FLOAT
- * for a specified baud rate and defined peripheral clock (PBCLK).
- */
-#define CALCULATE_UXBRG(baudRate) ((uint32_t) (CALCULATE_UXBRG_FLOAT(baudRate) + 0.5f))
+//------------------------------------------------------------------------------
+// Function prototypes
 
-/**
- * @brief Calculates baud rate percentage error for a specified baud rate and
- * defined peripheral clock (PBCLK).
- */
-#define CALCULATE_UART_BAUD_ERROR(baudRate) (100.0f * ((float) CALCULATE_UXBRG(baudRate) / CALCULATE_UXBRG_FLOAT(baudRate)) - 100.0f)
+uint32_t UartCalculateUxbrg(const uint32_t baudRate);
+float UartCalculateBaudRateError(const uint32_t baudRate);
 
 #endif
 

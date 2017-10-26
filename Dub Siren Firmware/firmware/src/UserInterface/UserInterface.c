@@ -162,10 +162,10 @@ static void LoadPresetsFromEeprom() {
         eepromData.checksum += (int32_t) ((uint8_t*) (&eepromData))[index];
     }
     if (eepromData.checksum == 0) {
-        Uart1PutString("\r\nEEPROM checksum OK\r\n");
+        Uart1WriteStringIfReady("\r\nEEPROM checksum OK\r\n");
         return;
     }
-    Uart1PutString("\r\nEEPROM checksum FAILED\r\n");
+    Uart1WriteStringIfReady("\r\nEEPROM checksum FAILED\r\n");
 
     // Load default presets
     RestoreDefaultPresets();
@@ -525,9 +525,7 @@ static void PrintSynthesiserParameters(const SynthesiserParameters * const synth
             synthesiserParameters->delayFilterType,
             synthesiserParameters->delayFilterFrequency
             );
-    if (Uart1IsPutReady() >= strlen(string)) {
-        Uart1PutString(string);
-    }
+    Uart1WriteStringIfReady(string);
 }
 
 //------------------------------------------------------------------------------

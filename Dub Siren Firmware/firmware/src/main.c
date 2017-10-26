@@ -42,10 +42,9 @@ void main() {
 
     TimerInitialise();
 
-    UartSettings uartSettings = DEFAULT_UART_SETTINGS;
-    Uart1Initialise(&uartSettings);
+    Uart1Initialise(&defaultUartSettings);
     TimerDelay(1); // wait else first data may be corrupted
-    Uart1PutString(
+    Uart1WriteStringIfReady(
             "\r\n"
             "FIRMWARE VERSION:\r\n"
             FIRMWARE_VERSION

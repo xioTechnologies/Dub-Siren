@@ -138,6 +138,10 @@
         <itemPath>../src/Synthesiser/Waveforms.c</itemPath>
         <itemPath>../src/Synthesiser/Synthesiser.c</itemPath>
       </logicalFolder>
+      <logicalFolder name="f5" displayName="Uart" projectFiles="true">
+        <itemPath>../src/Uart/Uart1.c</itemPath>
+        <itemPath>../src/Uart/UartCommon.c</itemPath>
+      </logicalFolder>
       <itemPath>../src/Dac/Dac.c</itemPath>
       <itemPath>../src/DebouncedButton/DebouncedButton.c</itemPath>
       <itemPath>../src/Eeprom/Eeprom.c</itemPath>
@@ -145,7 +149,6 @@
       <itemPath>../src/Potentiometers/Potentiometers.c</itemPath>
       <itemPath>../src/Timer/Timer.c</itemPath>
       <itemPath>../src/UserInterface/UserInterface.c</itemPath>
-      <itemPath>../src/Uart/Uart1.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
