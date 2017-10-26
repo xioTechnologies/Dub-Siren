@@ -21,7 +21,7 @@
 //------------------------------------------------------------------------------
 // Variable declarations
 
-static void (*audioUpdateFunction)();
+static void (*audioUpdateCallback)();
 static int buffer;
 
 //------------------------------------------------------------------------------
@@ -36,7 +36,7 @@ static int buffer;
 void DacInitialise(void (*audioUpdate)()) {
 
     // Store address of audio update function
-    audioUpdateFunction = audioUpdate;
+    audioUpdateCallback = audioUpdate;
 
     // Configure I2S
     SPI1BRG = (unsigned int) ((((float) SYS_CLK_BUS_REFERENCE_1 / (2.0f * 6144000.0f)) - 1.0f) + 0.5f); // 6.144 MHz
@@ -75,7 +75,7 @@ void __ISR(_SPI1_TX_VECTOR) Spi1TXInterrupt() {
  * interrupt is software triggered.
  */
 void __ISR(_TIMER_1_VECTOR) Timer1Interrupt() {
-    audioUpdateFunction();
+    audioUpdateCallback();
     SYS_INT_SourceStatusClear(INT_SOURCE_TIMER_1); // clear interrupt flag
 }
 

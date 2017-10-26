@@ -461,7 +461,6 @@ static bool ComparePotentiometers(const float potentiometerA, const float potent
         return false;
     }
     if (potentiometerA < (potentiometerB - delta)) {
-
         return false;
     }
     return true;
@@ -486,7 +485,6 @@ static int InterpretDiscretePotentiometer(const float potentiometer, const unsig
     if (valueIncludingDeadbands & 0b1) { // if value is odd
         return -1;
     } else {
-
         return (int) (valueIncludingDeadbands >> 1);
     }
 }

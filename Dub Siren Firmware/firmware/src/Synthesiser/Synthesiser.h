@@ -73,7 +73,7 @@ typedef struct {
  */
 #define DEFAULT_SYTHESISER_PARAMETERS ((SynthesiserParameters) { \
     .lfoWaveform = LfoWaveformSine, \
-    .lfoShape= 0.5f, \
+    .lfoShape = 0.5f, \
     .lfoFrequency = 2.0f, \
     .lfoAmplitude = 500.0f, \
     .lfoGateControl = false, \

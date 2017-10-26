@@ -17,10 +17,10 @@
 // Definitions
 
 /**
- * @brief The period between the gate opening and the LFO period elapsing when
- * LFO gate control is enabled.
+ * @brief The period (in seconds) between the gate opening and the LFO period
+ * elapsing when LFO gate control is enabled.
  */
-#define PREEMPTIVE_GATE_PERIOD (0.01)
+#define PREEMPTIVE_GATE_PERIOD (0.01f)
 
 /**
  * @brief Delay buffer size.
