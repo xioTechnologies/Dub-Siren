@@ -7,7 +7,6 @@
 //------------------------------------------------------------------------------
 // Includes
 
-#include "system_config.h" // SYS_CLK_BUS_PERIPHERAL_3
 #include "system/int/sys_int.h"
 #include "Timer.h"
 #include <xc.h>
@@ -27,7 +26,6 @@ typedef union {
 //------------------------------------------------------------------------------
 // Variable declarations
 
-const uint32_t timerTicksPerSecond = SYS_CLK_BUS_PERIPHERAL_3;
 static volatile uint32_t timerOverflowCounter;
 
 //------------------------------------------------------------------------------
@@ -79,7 +77,7 @@ uint64_t TimerGetTicks64() {
  */
 void TimerDelay(const uint32_t milliseconds) {
     uint64_t currentTicks = TimerGetTicks64();
-    const uint64_t endTicks = currentTicks + ((uint64_t) milliseconds * (uint64_t) (timerTicksPerSecond / 1000));
+    const uint64_t endTicks = currentTicks + ((uint64_t) milliseconds * (uint64_t) (TIMER_TICKS_PER_SECOND / 1000));
     do {
         currentTicks = TimerGetTicks64();
     } while (currentTicks < endTicks);
@@ -95,7 +93,7 @@ void TimerDelayMicroseconds(const uint32_t microseconds) {
     uint32_t currentTicks;
     do {
         currentTicks = TimerGetTicks32();
-    } while ((currentTicks - startTicks) < (microseconds * (timerTicksPerSecond / 1000000)));
+    } while ((currentTicks - startTicks) < (microseconds * (TIMER_TICKS_PER_SECOND / 1000000)));
 }
 
 /**

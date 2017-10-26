@@ -11,11 +11,15 @@
 // Includes
 
 #include <stdint.h>
+#include "system_config.h" // SYS_CLK_BUS_PERIPHERAL_3
 
 //------------------------------------------------------------------------------
-// Variable declarations
+// Definitions
 
-extern const uint32_t timerTicksPerSecond;
+/**
+ * @bief Number of timer ticks per second.  Used for timing calculations.
+ */
+#define TIMER_TICKS_PER_SECOND ((uint32_t) SYS_CLK_BUS_PERIPHERAL_1)
 
 //------------------------------------------------------------------------------
 // Function prototypes

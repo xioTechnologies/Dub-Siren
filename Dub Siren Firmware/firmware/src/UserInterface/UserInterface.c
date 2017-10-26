@@ -19,6 +19,7 @@
 #include <stdio.h> // snprintf
 #include <string.h> // strlen
 #include "Synthesiser/Synthesiser.h"
+#include "Timer/Timer.h"
 #include "Uart/Uart1.h"
 #include "UserInterface/UserInterface.h"
 
@@ -176,7 +177,7 @@ static void LoadPresetsFromEeprom() {
 static void RestoreDefaultPresets() {
     unsigned int presetKeyIndex;
     for (presetKeyIndex = 0; presetKeyIndex < NUMBER_OF_PRESET_KEYS; presetKeyIndex++) {
-        eepromData.presets[presetKeyIndex] = DEFAULT_SYTHESISER_PARAMETERS;
+        eepromData.presets[presetKeyIndex] = defaultSynthesiserParameters;
     }
     SavePresetsToFromEeprom();
 }
@@ -285,7 +286,7 @@ static void CheckForFactoryReset() {
             return; // return if any buttons or keys not held
         }
         const uint64_t currentTicks = TimerGetTicks64();
-        if ((currentTicks - previousTicks) >= (3 * timerTicksPerSecond)) {
+        if ((currentTicks - previousTicks) >= (3 * (uint64_t) TIMER_TICKS_PER_SECOND)) {
 
             // Load default presets
             RestoreDefaultPresets();

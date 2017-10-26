@@ -68,21 +68,10 @@ typedef struct {
     float delayFilterFrequency; // Hz
 } SynthesiserParameters;
 
-/**
- * @brief Default synthesiser parameters.
- */
-#define DEFAULT_SYTHESISER_PARAMETERS ((SynthesiserParameters) { \
-    .lfoWaveform = LfoWaveformSine, \
-    .lfoShape = 0.5f, \
-    .lfoFrequency = 2.0f, \
-    .lfoAmplitude = 500.0f, \
-    .lfoGateControl = false, \
-    .vcoWaveform = LfoWaveformSine, \
-    .vcoFrequency = 1000.0f, \
-    .delayTime = 0.0f, \
-    .delayFeedback = 0.0f, \
-    .delayFilterType = DelayFilterTypeNone, \
-    .delayFilterFrequency = 1.0f, })
+//------------------------------------------------------------------------------
+// Variable declarations
+
+extern const SynthesiserParameters defaultSynthesiserParameters;
 
 //------------------------------------------------------------------------------
 // Function prototypes

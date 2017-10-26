@@ -11,7 +11,7 @@
 // Includes
 
 #include <stdbool.h>
-#include "Timer/Timer.h"
+#include <stdint.h>
 
 //------------------------------------------------------------------------------
 // Definitions

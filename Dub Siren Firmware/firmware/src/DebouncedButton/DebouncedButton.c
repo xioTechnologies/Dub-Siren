@@ -8,6 +8,7 @@
 // Includes
 
 #include "DebouncedButton.h"
+#include "Timer/Timer.h"
 
 //------------------------------------------------------------------------------
 // Definitions
@@ -15,7 +16,7 @@
 /**
  * @breif Debounce holdoff period in timer ticks.
  */
-#define HOLDOFF_PERIOD (timerTicksPerSecond / 100)
+#define HOLDOFF_PERIOD ((uint64_t) (TIMER_TICKS_PER_SECOND / 100))
 
 //------------------------------------------------------------------------------
 // Function prototypes

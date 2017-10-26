@@ -39,11 +39,24 @@ static void IncrementDelayBufferIndex();
 //------------------------------------------------------------------------------
 // Variable declarations
 
+const SynthesiserParameters defaultSynthesiserParameters = {
+    .lfoWaveform = LfoWaveformSine,
+    .lfoShape = 0.5f,
+    .lfoFrequency = 2.0f,
+    .lfoAmplitude = 500.0f,
+    .lfoGateControl = false,
+    .vcoWaveform = LfoWaveformSine,
+    .vcoFrequency = 1000.0f,
+    .delayTime = 0.0f,
+    .delayFeedback = 0.0f,
+    .delayFilterType = DelayFilterTypeNone,
+    .delayFilterFrequency = 1.0f,
+};
 static SynthesiserParameters synthesiserParameters;
-static SynthesiserParameters pendingSynthesiserParameters = DEFAULT_SYTHESISER_PARAMETERS;
-static bool newSynthesiserParametersPending = true; // initialised state is true to ensure default parameters are applied
+static SynthesiserParameters pendingSynthesiserParameters;
+static bool newSynthesiserParametersPending;
 static bool trigger;
-static bool gate = true;
+static bool gate;
 static FirstOrderFilter gateGainLowPassFilter;
 static float delayBuffer[DELAY_BUFFER_SIZE];
 static unsigned int delayBufferIndex = 0;
@@ -59,6 +72,11 @@ static CascadeFilter delayFilter;
  */
 void SynthesiserInitialise() {
 
+    // Initialise variables
+    pendingSynthesiserParameters = defaultSynthesiserParameters;
+    newSynthesiserParametersPending = true;
+    gate = true;
+
     // Initialise fixed filters
     FirstOrderFilterSetCornerFrequency(&gateGainLowPassFilter, 100.0f, SAMPLE_FREQUENCY, false);
     FirstOrderFilterSetCornerFrequency(&delayTimeLowPassFilter, 1.0f, SAMPLE_FREQUENCY, false);
@@ -67,6 +85,10 @@ void SynthesiserInitialise() {
     DacInitialise(&AudioUpdate);
 }
 
+/**
+ * @brief Sets new synthesiser parameters.
+ * @param newSynthesiserParameters New synthesiser parameters.
+ */
 void SynthesiserSetParameters(const SynthesiserParameters * const newSynthesiserParameters) {
     newSynthesiserParametersPending = false;
     pendingSynthesiserParameters = *newSynthesiserParameters;
