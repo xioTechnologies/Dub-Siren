@@ -36,7 +36,7 @@ static void Initialise();
  * @brief Firmware entry point.
  * @return This function should never return.
  */
-void main() {
+int main() {
 
     Initialise();
 

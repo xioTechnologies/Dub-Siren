@@ -31,7 +31,6 @@
 // Function prototypes
 
 static void AudioUpdate();
-static float MixSamples(const float sampleA, const float sampleB, const float gain);
 static void WriteToDelayBuffer(const float sample);
 static float ReadFromDelayBuffer(float delay);
 static void MixToDelayBuffer(const float sample);
@@ -144,6 +143,8 @@ static void AudioUpdate() {
         case LfoWaveformSteppedSawtooth:
             lfoWaveform = WaveformsSteppedSawtooth(lfoPeriodClock, synthesiserParameters.lfoShape);
             break;
+        case LfoWaveformNumberOfWaveforms:
+            break;
     }
     lfoPeriodClock += (1.0f / SAMPLE_FREQUENCY) * synthesiserParameters.lfoFrequency;
     if ((synthesiserParameters.lfoGateControl == true) && (lfoPeriodClock >= (1.0f - (PREEMPTIVE_GATE_PERIOD * synthesiserParameters.lfoFrequency)))) {
@@ -172,6 +173,8 @@ static void AudioUpdate() {
             break;
         case VcoWaveformOneBitNoise:
             output = WaveformsOneBitNoise(vcoModulatedFrequency, SAMPLE_FREQUENCY);
+            break;
+        case VcoWaveformNumberOfWaveforms:
             break;
     }
     vcoPeriodClock += (1.0f / SAMPLE_FREQUENCY) * vcoModulatedFrequency;
@@ -212,7 +215,6 @@ static void WriteToDelayBuffer(const float sample) {
 static float ReadFromDelayBuffer(float delayTime) {
     delayTime = FirstOrderFilterUpdate(&delayTimeLowPassFilter, delayTime); // filter out sudden changes to avoid distortion
     int readIndex = delayBufferIndex - CLAMP((int) (delayTime * SAMPLE_FREQUENCY), 0, DELAY_BUFFER_SIZE);
-    (int) (delayTime * (float) (DELAY_BUFFER_SIZE - 1));
     if (readIndex < 0) {
         readIndex = DELAY_BUFFER_SIZE + readIndex; // handle index underflow
     }

@@ -63,7 +63,6 @@ static void WriteSda(const bool state);
 static void LoadPresetsFromEeprom();
 static void RestoreDefaultPresets();
 static void SavePresetsToFromEeprom();
-static int32_t CalculatePresetsChecksum();
 static void CheckForFactoryReset();
 static bool AnyOrAllButtonOrKeyIsHeld(const bool isHeldState);
 static void ReadPotentiometers(SynthesiserParameters * const synthesiserParameters);
@@ -514,16 +513,16 @@ static void PrintSynthesiserParameters(const SynthesiserParameters * const synth
             "delayFilterFrequency   = %f\r\n"
             ,
             synthesiserParameters->lfoWaveform,
-            synthesiserParameters->lfoShape,
-            synthesiserParameters->lfoFrequency,
-            synthesiserParameters->lfoAmplitude,
+            (double) synthesiserParameters->lfoShape,
+            (double) synthesiserParameters->lfoFrequency,
+            (double) synthesiserParameters->lfoAmplitude,
             synthesiserParameters->lfoGateControl == true ? "true" : "false",
             synthesiserParameters->vcoWaveform,
-            synthesiserParameters->vcoFrequency,
-            synthesiserParameters->delayTime,
-            synthesiserParameters->delayFeedback,
+            (double) synthesiserParameters->vcoFrequency,
+            (double) synthesiserParameters->delayTime,
+            (double) synthesiserParameters->delayFeedback,
             synthesiserParameters->delayFilterType,
-            synthesiserParameters->delayFilterFrequency
+            (double) synthesiserParameters->delayFilterFrequency
             );
     Uart1WriteStringIfReady(string);
 }
