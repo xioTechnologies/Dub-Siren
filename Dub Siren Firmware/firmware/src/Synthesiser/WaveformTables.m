@@ -128,7 +128,7 @@ fprintf(fileWrite, '};\n\n');
 
 %% Pulse wave
 
-dutyCycle = 0.1;
+dutyCycle = 0.2;
 
 fprintf(fileWrite, '#define HALF_PULSE_DUTY_CYCLE %0.6ff\n\n', dutyCycle / 2);
 
