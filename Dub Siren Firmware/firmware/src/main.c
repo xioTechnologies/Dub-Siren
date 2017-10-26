@@ -125,9 +125,6 @@ static void Initialise() {
     UART_TX_MAP();
     UART_RTS_MAP();
     UART_CTS_MAP();
-
-    // Configure test pin I/O
-    TEST_PIN_TRIS = 0;
 }
 
 //------------------------------------------------------------------------------

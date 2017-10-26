@@ -91,10 +91,6 @@
 #define UART_RTS_MAP()                      RPB2Rbits.RPB2R = 0b0001
 #define UART_CTS_MAP()                      U1CTSRbits.U1CTSR = 0b0010
 
-// Test pin
-#define TEST_PIN_TRIS                       TRISBbits.TRISB4
-#define TEST_PIN_LAT                        LATBbits.LATB4
-
 #endif
 
 //------------------------------------------------------------------------------
