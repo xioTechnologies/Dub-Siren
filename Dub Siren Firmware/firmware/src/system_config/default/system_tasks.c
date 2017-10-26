@@ -72,7 +72,6 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 void SYS_Tasks ( void )
 {
     /* Maintain system services */
-    SYS_DEVCON_Tasks(sysObj.sysDevcon);
 
     /* Maintain Device Drivers */
 

@@ -71,6 +71,67 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 void SYS_PORTS_Initialize(void)
 {
 
+    
+    /* PORT B Initialization */
+    PLIB_PORTS_OpenDrainEnable(PORTS_ID_0, PORT_CHANNEL_B, SYS_PORT_B_ODC);
+    PLIB_PORTS_Write( PORTS_ID_0, PORT_CHANNEL_B,  SYS_PORT_B_LAT);
+    PLIB_PORTS_DirectionOutputSet( PORTS_ID_0, PORT_CHANNEL_B,  SYS_PORT_B_TRIS ^ 0xFFFF);
+    PLIB_PORTS_ChangeNoticePerPortTurnOn(PORTS_ID_0, PORT_CHANNEL_B);
+    PLIB_PORTS_ChannelModeSelect(PORTS_ID_0, PORT_CHANNEL_B, SYS_PORT_B_ANSEL ^ 0xFFFF, PORTS_PIN_MODE_DIGITAL);
+    PLIB_PORTS_ChannelChangeNoticeEnable(PORTS_ID_0, PORT_CHANNEL_B, SYS_PORT_B_CNEN);
+    PLIB_PORTS_ChannelChangeNoticePullUpEnable(PORTS_ID_0, PORT_CHANNEL_B, SYS_PORT_B_CNPU);
+    PLIB_PORTS_ChannelChangeNoticePullDownEnable(PORTS_ID_0, PORT_CHANNEL_B, SYS_PORT_B_CNPD);
+    
+    /* PORT C Initialization */
+    PLIB_PORTS_OpenDrainEnable(PORTS_ID_0, PORT_CHANNEL_C, SYS_PORT_C_ODC);
+    PLIB_PORTS_Write( PORTS_ID_0, PORT_CHANNEL_C,  SYS_PORT_C_LAT);
+    PLIB_PORTS_DirectionOutputSet( PORTS_ID_0, PORT_CHANNEL_C,  SYS_PORT_C_TRIS ^ 0xFFFF);
+    PLIB_PORTS_ChangeNoticePerPortTurnOn(PORTS_ID_0, PORT_CHANNEL_C);
+    PLIB_PORTS_ChannelModeSelect(PORTS_ID_0, PORT_CHANNEL_C, SYS_PORT_C_ANSEL ^ 0xFFFF, PORTS_PIN_MODE_DIGITAL);
+    PLIB_PORTS_ChannelChangeNoticeEnable(PORTS_ID_0, PORT_CHANNEL_C, SYS_PORT_C_CNEN);
+    PLIB_PORTS_ChannelChangeNoticePullUpEnable(PORTS_ID_0, PORT_CHANNEL_C, SYS_PORT_C_CNPU);
+    PLIB_PORTS_ChannelChangeNoticePullDownEnable(PORTS_ID_0, PORT_CHANNEL_C, SYS_PORT_C_CNPD);
+    
+    /* PORT D Initialization */
+    PLIB_PORTS_OpenDrainEnable(PORTS_ID_0, PORT_CHANNEL_D, SYS_PORT_D_ODC);
+    PLIB_PORTS_Write( PORTS_ID_0, PORT_CHANNEL_D,  SYS_PORT_D_LAT);
+    PLIB_PORTS_DirectionOutputSet( PORTS_ID_0, PORT_CHANNEL_D,  SYS_PORT_D_TRIS ^ 0xFFFF);
+    PLIB_PORTS_ChangeNoticePerPortTurnOn(PORTS_ID_0, PORT_CHANNEL_D);
+    PLIB_PORTS_ChannelModeSelect(PORTS_ID_0, PORT_CHANNEL_D, SYS_PORT_D_ANSEL ^ 0xFFFF, PORTS_PIN_MODE_DIGITAL);
+    PLIB_PORTS_ChannelChangeNoticeEnable(PORTS_ID_0, PORT_CHANNEL_D, SYS_PORT_D_CNEN);
+    PLIB_PORTS_ChannelChangeNoticePullUpEnable(PORTS_ID_0, PORT_CHANNEL_D, SYS_PORT_D_CNPU);
+    PLIB_PORTS_ChannelChangeNoticePullDownEnable(PORTS_ID_0, PORT_CHANNEL_D, SYS_PORT_D_CNPD);
+    
+    /* PORT E Initialization */
+    PLIB_PORTS_OpenDrainEnable(PORTS_ID_0, PORT_CHANNEL_E, SYS_PORT_E_ODC);
+    PLIB_PORTS_Write( PORTS_ID_0, PORT_CHANNEL_E,  SYS_PORT_E_LAT);
+    PLIB_PORTS_DirectionOutputSet( PORTS_ID_0, PORT_CHANNEL_E,  SYS_PORT_E_TRIS ^ 0xFFFF);
+    PLIB_PORTS_ChangeNoticePerPortTurnOn(PORTS_ID_0, PORT_CHANNEL_E);
+    PLIB_PORTS_ChannelModeSelect(PORTS_ID_0, PORT_CHANNEL_E, SYS_PORT_E_ANSEL ^ 0xFFFF, PORTS_PIN_MODE_DIGITAL);
+    PLIB_PORTS_ChannelChangeNoticeEnable(PORTS_ID_0, PORT_CHANNEL_E, SYS_PORT_E_CNEN);
+    PLIB_PORTS_ChannelChangeNoticePullUpEnable(PORTS_ID_0, PORT_CHANNEL_E, SYS_PORT_E_CNPU);
+    PLIB_PORTS_ChannelChangeNoticePullDownEnable(PORTS_ID_0, PORT_CHANNEL_E, SYS_PORT_E_CNPD);
+    
+    /* PORT F Initialization */
+    PLIB_PORTS_OpenDrainEnable(PORTS_ID_0, PORT_CHANNEL_F, SYS_PORT_F_ODC);
+    PLIB_PORTS_Write( PORTS_ID_0, PORT_CHANNEL_F,  SYS_PORT_F_LAT);
+    PLIB_PORTS_DirectionOutputSet( PORTS_ID_0, PORT_CHANNEL_F,  SYS_PORT_F_TRIS ^ 0xFFFF);
+    PLIB_PORTS_ChangeNoticePerPortTurnOn(PORTS_ID_0, PORT_CHANNEL_F);
+    PLIB_PORTS_ChannelModeSelect(PORTS_ID_0, PORT_CHANNEL_F, SYS_PORT_F_ANSEL ^ 0xFFFF, PORTS_PIN_MODE_DIGITAL);
+    PLIB_PORTS_ChannelChangeNoticeEnable(PORTS_ID_0, PORT_CHANNEL_F, SYS_PORT_F_CNEN);
+    PLIB_PORTS_ChannelChangeNoticePullUpEnable(PORTS_ID_0, PORT_CHANNEL_F, SYS_PORT_F_CNPU);
+    PLIB_PORTS_ChannelChangeNoticePullDownEnable(PORTS_ID_0, PORT_CHANNEL_F, SYS_PORT_F_CNPD);
+    
+    /* PORT G Initialization */
+    PLIB_PORTS_OpenDrainEnable(PORTS_ID_0, PORT_CHANNEL_G, SYS_PORT_G_ODC);
+    PLIB_PORTS_Write( PORTS_ID_0, PORT_CHANNEL_G,  SYS_PORT_G_LAT);
+    PLIB_PORTS_DirectionOutputSet( PORTS_ID_0, PORT_CHANNEL_G,  SYS_PORT_G_TRIS ^ 0xFFFF);
+    PLIB_PORTS_ChangeNoticePerPortTurnOn(PORTS_ID_0, PORT_CHANNEL_G);
+    PLIB_PORTS_ChannelModeSelect(PORTS_ID_0, PORT_CHANNEL_G, SYS_PORT_G_ANSEL ^ 0xFFFF, PORTS_PIN_MODE_DIGITAL);
+    PLIB_PORTS_ChannelChangeNoticeEnable(PORTS_ID_0, PORT_CHANNEL_G, SYS_PORT_G_CNEN);
+    PLIB_PORTS_ChannelChangeNoticePullUpEnable(PORTS_ID_0, PORT_CHANNEL_G, SYS_PORT_G_CNPU);
+    PLIB_PORTS_ChannelChangeNoticePullDownEnable(PORTS_ID_0, PORT_CHANNEL_G, SYS_PORT_G_CNPD);
+
 
     /* PPS Input Remapping */
 
@@ -121,6 +182,26 @@ void SYS_PORTS_Write( PORTS_MODULE_ID index,
     PLIB_PORTS_Write( index, channel, value );
 }
 
+/******************************************************************************
+  Function:
+    PORTS_DATA_TYPE SYS_PORTS_LatchedGet( PORTS_MODULE_ID index, PORTS_CHANNEL channel )
+
+  Summary:
+    Reads the data driven on the I/O port.
+
+  Description:
+    This function reads the data driven on the I/O port.
+
+  Remarks:
+    None.
+*/
+
+PORTS_DATA_TYPE SYS_PORTS_LatchedGet( PORTS_MODULE_ID index, PORTS_CHANNEL channel )
+{
+    SYS_ASSERT(false, "This API is not supported on this device");
+    /* TODO: Call corresponding PLIB API */
+    return 0;
+}
 
 /******************************************************************************
   Function:
@@ -296,6 +377,32 @@ void SYS_PORTS_OpenDrainDisable( PORTS_MODULE_ID index, PORTS_CHANNEL channel,
 #endif
 }
 
+// *****************************************************************************
+/* Function:
+    PORTS_DATA_TYPE SYS_PORTS_InterruptStatusGet
+    ( 
+        PORTS_MODULE_ID index, 
+        PORTS_CHANNEL channel 
+    )
+
+  Summary:
+    Reads the data from the I/O port.
+	<p><b>Implementation:</b> Dynamic</p>
+
+  Description:
+    This function reads the data from the I/O port.
+
+*/
+
+PORTS_DATA_TYPE SYS_PORTS_InterruptStatusGet
+( 
+    PORTS_MODULE_ID index, 
+    PORTS_CHANNEL channel 
+)
+{
+    SYS_ASSERT(false, "This API is not supported on this device");
+    return 0;
+}
 
 // *****************************************************************************
 // *****************************************************************************
@@ -613,6 +720,32 @@ void SYS_PORTS_PinWrite ( PORTS_MODULE_ID index,
 
 // *****************************************************************************
 /* Function:
+    bool SYS_PORTS_PinLatchedGet ( PORTS_MODULE_ID index,
+                             PORTS_CHANNEL channel,
+                             PORTS_BIT_POS bitPos )
+
+  Summary:
+    Reads the data driven on selected digital pin.
+
+  Description:
+    This function reads the driven data on selected digital pin.
+
+  Remarks:
+    None.
+*/
+
+bool SYS_PORTS_PinLatchedGet ( PORTS_MODULE_ID index,
+                         PORTS_CHANNEL channel,
+                         PORTS_BIT_POS bitPos )
+{
+    SYS_ASSERT(false, "This API is not supported on this device");
+    /* TODO: Call corresponding PLIB API */
+    return false;
+}
+
+
+// *****************************************************************************
+/* Function:
     bool SYS_PORTS_PinRead ( PORTS_MODULE_ID index,
                              PORTS_CHANNEL channel,
                              PORTS_BIT_POS bitPos )
@@ -794,6 +927,147 @@ void SYS_PORTS_PinOpenDrainDisable ( PORTS_MODULE_ID index,
         PLIB_PORTS_PinOpenDrainDisable ( index, channel, bitPos );
     }
 #endif
+}
+
+
+// *****************************************************************************
+/* Function:
+    void SYS_PORTS_PinPullUpEnable ( PORTS_MODULE_ID index, 
+                                        PORTS_CHANNEL channel,
+                                        PORTS_BIT_POS bitPos )
+
+  Summary:
+    Enables the pull-up functionality for the selected pin.
+	<p><b>Implementation:</b> Dynamic</p>
+
+  Description:
+    This function enables the pull-up functionality for the selected pin.
+
+  Remarks:
+    Not all features are available on all devices. Refer to the specific device
+    data sheet for availability.
+*/
+
+void SYS_PORTS_PinPullUpEnable ( PORTS_MODULE_ID index, 
+                                    PORTS_CHANNEL channel,
+                                    PORTS_BIT_POS bitPos )
+{
+    SYS_ASSERT(false, "This API is not supported on this device");
+    return;
+}
+
+
+// *****************************************************************************
+/* Function:
+    void SYS_PORTS_PinPullUpDisable ( PORTS_MODULE_ID index, 
+                                         PORTS_CHANNEL channel,
+                                         PORTS_BIT_POS bitPos )
+
+  Summary:
+    Disables the pull-up functionality for the selected pin.
+	<p><b>Implementation:</b> Dynamic</p>
+
+  Description:
+    This function disables the pull-up functionality for the selected pin.
+
+  Remarks:
+    Not all features are available on all devices. Refer to the specific device
+    data sheet for availability.
+*/
+
+void SYS_PORTS_PinPullUpDisable ( PORTS_MODULE_ID index, 
+                                     PORTS_CHANNEL channel,
+                                     PORTS_BIT_POS bitPos )
+{
+    SYS_ASSERT(false, "This API is not supported on this device");
+    return;
+}
+
+
+// *****************************************************************************
+/* Function:
+    void SYS_PORTS_PinPullDownEnable ( PORTS_MODULE_ID index, 
+                                        PORTS_CHANNEL channel,
+                                        PORTS_BIT_POS bitPos )
+
+  Summary:
+    Enables the pull-down functionality for the selected pin.
+	<p><b>Implementation:</b> Dynamic</p>
+
+  Description:
+    This function enables the pull-down functionality for the selected pin.
+
+  Remarks:
+    Not all features are available on all devices. Refer to the specific device
+    data sheet for availability.
+*/
+
+void SYS_PORTS_PinPullDownEnable ( PORTS_MODULE_ID index, 
+                                    PORTS_CHANNEL channel,
+                                    PORTS_BIT_POS bitPos )
+{
+    SYS_ASSERT(false, "This API is not supported on this device");
+    return;
+}
+
+
+// *****************************************************************************
+/* Function:
+    void SYS_PORTS_PinPullDownDisable ( PORTS_MODULE_ID index, 
+                                         PORTS_CHANNEL channel,
+                                         PORTS_BIT_POS bitPos )
+
+  Summary:
+    Disables the pull-down functionality for the selected pin.
+	<p><b>Implementation:</b> Dynamic</p>
+
+  Description:
+    This function disables the pull-down functionality for the selected pin.
+
+  Remarks:
+    Not all features are available on all devices. Refer to the specific device
+    data sheet for availability.
+*/
+
+void SYS_PORTS_PinPullDownDisable ( PORTS_MODULE_ID index, 
+                                     PORTS_CHANNEL channel,
+                                     PORTS_BIT_POS bitPos )
+{
+    SYS_ASSERT(false, "This API is not supported on this device");
+    return;
+}
+                                     
+                                     
+/******************************************************************************
+  Function:
+    void SYS_PORTS_InterruptEnable
+    (
+        PORTS_MODULE_ID index,
+        PORTS_CHANNEL channel,
+        PORTS_BIT_POS bitPos,
+        PORTS_PIN_INTERRUPT_TYPE pinInterruptType
+    )
+
+  Summary:
+    Enables the change notification interrupt for the selected port pin.
+
+  Description:
+    This function enables the change notification interrupt of selected type
+    for the selected port pin.
+
+  Remarks:
+    None.
+*/
+void SYS_PORTS_InterruptEnable
+(
+    PORTS_MODULE_ID index,
+    PORTS_CHANNEL channel,
+    PORTS_BIT_POS bitPos,
+    PORTS_PIN_INTERRUPT_TYPE pinInterruptType
+)
+{
+    SYS_ASSERT(false, "This API is not supported on this device");
+    return;
 }
 
 

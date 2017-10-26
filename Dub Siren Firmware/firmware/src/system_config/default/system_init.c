@@ -9,9 +9,9 @@
 
   Description:
     This file contains source code necessary to initialize the system.  It
-    implements the "SYS_Initialize" function, defines the configuration bits, 
-    and allocates any necessary global system resources, such as the 
-    sysObj structure that contains the object handles to all the MPLAB Harmony 
+    implements the "SYS_Initialize" function, defines the configuration bits,
+    and allocates any necessary global system resources, such as the
+    sysObj structure that contains the object handles to all the MPLAB Harmony
     module objects in the system.
  *******************************************************************************/
 
@@ -68,9 +68,9 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #pragma config FSLEEP =     OFF
 #pragma config DBGPER =     PG_ALL
 #pragma config SMCLR =      MCLR_NORM
-#pragma config SOSCGAIN =   GAIN_2X
+#pragma config SOSCGAIN =   GAIN_LEVEL_3
 #pragma config SOSCBOOST =  ON
-#pragma config POSCGAIN =   GAIN_2X
+#pragma config POSCGAIN =   GAIN_LEVEL_3
 #pragma config POSCBOOST =  ON
 #pragma config EJTAGBEN =   NORMAL
 #pragma config CP =         OFF
@@ -81,7 +81,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #pragma config DMTINTV =    WIN_127_128
 #pragma config FSOSCEN =    OFF
 #pragma config IESO =       OFF
-#pragma config POSCMOD =    OFF
+#pragma config POSCMOD =    HS
 #pragma config OSCIOFNC =   OFF
 #pragma config FCKSM =      CSECME
 #pragma config WDTPS =      PS1048576
@@ -102,12 +102,12 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 /*** DEVCFG3 ***/
 
 #pragma config USERID =     0xffff
-#pragma config FMIIEN =     ON
-#pragma config FETHIO =     ON
+#pragma config FMIIEN =     OFF
+#pragma config FETHIO =     OFF
 #pragma config PGL1WAY =    ON
 #pragma config PMDL1WAY =   ON
 #pragma config IOL1WAY =    ON
-#pragma config FUSBIDIO =   ON
+#pragma config FUSBIDIO =   OFF
 
 /*** BF1SEQ0 ***/
 
@@ -135,17 +135,6 @@ SYSTEM_OBJECTS sysObj;
 // Section: Module Initialization Data
 // *****************************************************************************
 // *****************************************************************************
-//<editor-fold defaultstate="collapsed" desc="SYS_DEVCON Initialization Data">
-/*******************************************************************************
-  Device Control System Service Initialization Data
-*/
-
-const SYS_DEVCON_INIT sysDevconInit =
-{
-    .moduleInit = {0},
-};
-
-// </editor-fold>
 
 // *****************************************************************************
 // *****************************************************************************
@@ -155,18 +144,9 @@ const SYS_DEVCON_INIT sysDevconInit =
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: Static Initialization Functions
-// *****************************************************************************
-// *****************************************************************************
-
-
-
-// *****************************************************************************
-// *****************************************************************************
 // Section: System Initialization
 // *****************************************************************************
 // *****************************************************************************
-
 
 /*******************************************************************************
   Function:
@@ -183,7 +163,7 @@ void SYS_Initialize ( void* data )
 {
     /* Core Processor Initialization */
     SYS_CLK_Initialize( NULL );
-    sysObj.sysDevcon = SYS_DEVCON_Initialize(SYS_DEVCON_INDEX_0, (SYS_MODULE_INIT*)&sysDevconInit);
+    SYS_DEVCON_Initialize(SYS_DEVCON_INDEX_0, (SYS_MODULE_INIT*)NULL);
     SYS_DEVCON_PerformanceConfig(SYS_CLK_SystemFrequencyGet());
     SYS_PORTS_Initialize();
 
@@ -193,7 +173,7 @@ void SYS_Initialize ( void* data )
 
     /*** Interrupt Service Initialization Code ***/
     SYS_INT_Initialize();
-  
+
     /* Initialize Middleware */
 
     /* Enable Global Interrupts */

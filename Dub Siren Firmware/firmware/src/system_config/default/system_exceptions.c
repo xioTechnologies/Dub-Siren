@@ -129,7 +129,7 @@ void _general_exception_handler ( void )
     _excep_addr = _CP0_GET_EPC();
     _cause_str  = cause[_excep_code];
 
-    SYS_DEBUG_PRINT(SYS_ERROR_ERROR, "\nGeneral Exception %s (cause=%d, addr=%x).\n", 
+    SYS_DEBUG_PRINT(SYS_ERROR_ERROR, "\n\rGeneral Exception %s (cause=%d, addr=%x).\n\r", 
                     _cause_str, _excep_code, _excep_addr);
 
     while (1)

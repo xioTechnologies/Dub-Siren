@@ -1,199 +1,200 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<configuration version="1.0.11.0">
+<Configuration>
   <DisplayManager>
-    <SystemInitScript/>
-    <SystemStartScript/>
+    <SystemInitScript dnOrder="0"/>
+    <SystemStartScript dnOrder="1"/>
   </DisplayManager>
   <General>
-    <HarmonyPath path="../../../../../microchip/harmony/v1_11"/>
-    <Processor name=""/>
-    <ForceOptimization flag="true"/>
-    <MergeStrategy flag="USER_ALL"/>
+    <HarmonyPath dnOrder="0" path="../../../../../microchip/harmony/v2_04"/>
+    <Processor dnOrder="1" name="PIC32MZ2048EFH064"/>
+    <Board dnOrder="2" name=" "/>
+    <ForceOptimization dnOrder="3" flag="true"/>
+    <MergeStrategy dnOrder="4" flag="ALL"/>
   </General>
   <Manifest>
-    <Files>
-      <File>
-        <Name>osal_impl_basic.h</Name>
-        <Path>Header Files/framework/osal/src</Path>
+    <Files dnOrder="0">
+      <File dnOrder="0">
+        <Name dnOrder="0">sys_clk.h</Name>
+        <Path dnOrder="1">Header&amp;#160;Files/framework/system/clk</Path>
       </File>
-      <File>
-        <Name>peripheral_common_32bit.h</Name>
-        <Path>Header Files/framework/peripheral</Path>
+      <File dnOrder="1">
+        <Name dnOrder="0">sys_ports_definitions.h</Name>
+        <Path dnOrder="1">Header&amp;#160;Files/framework/system/ports</Path>
       </File>
-      <File>
-        <Name>sys_devcon.c</Name>
-        <Path>Source Files/framework/system/devcon/src</Path>
+      <File dnOrder="2">
+        <Name dnOrder="0">osal_impl_basic.h</Name>
+        <Path dnOrder="1">Header&amp;#160;Files/framework/osal</Path>
       </File>
-      <File>
-        <Name>osal.h</Name>
-        <Path>Header Files/framework/osal</Path>
+      <File dnOrder="3">
+        <Name dnOrder="0">sys_clk_mapping.h</Name>
+        <Path dnOrder="1">Header&amp;#160;Files/framework/system/clk</Path>
       </File>
-      <File>
-        <Name>sys_ports.h</Name>
-        <Path>Header Files/framework/system/ports</Path>
+      <File dnOrder="4">
+        <Name dnOrder="0">osal_definitions.h</Name>
+        <Path dnOrder="1">Header&amp;#160;Files/framework/osal</Path>
       </File>
-      <File>
-        <Name>peripheral_common.h</Name>
-        <Path>Header Files/framework/peripheral</Path>
+      <File dnOrder="5">
+        <Name dnOrder="0">sys_int_mapping.h</Name>
+        <Path dnOrder="1">Header&amp;#160;Files/framework/system/int</Path>
       </File>
-      <File>
-        <Name>sys_devcon_cache.h</Name>
-        <Path>Source Files/framework/system/devcon/src</Path>
+      <File dnOrder="6">
+        <Name dnOrder="0">osal.h</Name>
+        <Path dnOrder="1">Header&amp;#160;Files/framework/osal</Path>
       </File>
-      <File>
-        <Name>sys_common.h</Name>
-        <Path>Header Files/framework/system/common</Path>
+      <File dnOrder="7">
+        <Name dnOrder="0">sys_int_private.h</Name>
+        <Path dnOrder="1">Header&amp;#160;Files/framework/system/int/src</Path>
       </File>
-      <File>
-        <Name>sys_buffer.h</Name>
-        <Path>Header Files/framework/system/common</Path>
+      <File dnOrder="8">
+        <Name dnOrder="0">system.h</Name>
+        <Path dnOrder="1">Header&amp;#160;Files/framework/system</Path>
       </File>
-      <File>
-        <Name>sys_int_pic32.c</Name>
-        <Path>Source Files/framework/system/int/src</Path>
+      <File dnOrder="9">
+        <Name dnOrder="0">sys_debug.h</Name>
+        <Path dnOrder="1">Header&amp;#160;Files/framework/system/debug</Path>
       </File>
-      <File>
-        <Name>sys_clk.h</Name>
-        <Path>Header Files/framework/system/clk</Path>
+      <File dnOrder="10">
+        <Name dnOrder="0">sys_module.h</Name>
+        <Path dnOrder="1">Header&amp;#160;Files/framework/system/common</Path>
       </File>
-      <File>
-        <Name>osal_impl_none.h</Name>
-        <Path>Header Files/framework/osal/src</Path>
+      <File dnOrder="11">
+        <Name dnOrder="0">sys_ports.h</Name>
+        <Path dnOrder="1">Header&amp;#160;Files/framework/system/ports</Path>
       </File>
-      <File>
-        <Name>sys_clk_mapping.h</Name>
-        <Path>Header Files/framework/system/clk</Path>
+      <File dnOrder="12">
+        <Name dnOrder="0">sys_common.h</Name>
+        <Path dnOrder="1">Header&amp;#160;Files/framework/system/common</Path>
       </File>
-      <File>
-        <Name>sys_devcon_cache_pic32mz.S</Name>
-        <Path>Source Files/framework/system/devcon/src</Path>
+      <File dnOrder="13">
+        <Name dnOrder="0">sys_buffer.h</Name>
+        <Path dnOrder="1">Header&amp;#160;Files/framework/system/common</Path>
       </File>
-      <File>
-        <Name>osal_definitions.h</Name>
-        <Path>Header Files/framework/osal</Path>
+      <File dnOrder="14">
+        <Name dnOrder="0">sys_int_pic32.c</Name>
+        <Path dnOrder="1">Source&amp;#160;Files/framework/system/int/src</Path>
       </File>
-      <File>
-        <Name>sys_int_mapping.h</Name>
-        <Path>Header Files/framework/system/int</Path>
+      <File dnOrder="15">
+        <Name dnOrder="0">sys_queue.h</Name>
+        <Path dnOrder="1">Header&amp;#160;Files/framework/system/common</Path>
       </File>
-      <File>
-        <Name>gfx_palette.h</Name>
-        <Path>Header Files/framework/gfx</Path>
+      <File dnOrder="16">
+        <Name dnOrder="0">sys_int.h</Name>
+        <Path dnOrder="1">Header&amp;#160;Files/framework/system/int</Path>
       </File>
-      <File>
-        <Name>sys_int_private.h</Name>
-        <Path>Header Files/framework/system/int/src</Path>
-      </File>
-      <File>
-        <Name>sys_devcon.h</Name>
-        <Path>Header Files/framework/system/devcon</Path>
-      </File>
-      <File>
-        <Name>system.h</Name>
-        <Path>Header Files/framework/system</Path>
-      </File>
-      <File>
-        <Name>sys_debug.h</Name>
-        <Path>Header Files/framework/system/debug</Path>
-      </File>
-      <File>
-        <Name>sys_module.h</Name>
-        <Path>Header Files/framework/system/common</Path>
-      </File>
-      <File>
-        <Name>sys_devcon_pic32mz.c</Name>
-        <Path>Source Files/framework/system/devcon/src</Path>
-      </File>
-      <File>
-        <Name>sys_devcon_local.h</Name>
-        <Path>Header Files/framework/system/devcon/src</Path>
-      </File>
-      <File>
-        <Name>peripheral.h</Name>
-        <Path>Header Files/framework/peripheral</Path>
-      </File>
-      <File>
-        <Name>sys_queue.h</Name>
-        <Path>Header Files/framework/system/common</Path>
-      </File>
-      <File>
-        <Name>sys_int.h</Name>
-        <Path>Header Files/framework/system/int</Path>
+      <File dnOrder="17">
+        <Name dnOrder="0">sys_clk_compatibility.h</Name>
+        <Path dnOrder="1">Header&amp;#160;Files/framework/system/clk</Path>
       </File>
     </Files>
-    <Templates>
-      <Template>
-        <Name>sys_ports_static.c</Name>
-        <Path>Source Files/app/system_config/default/framework/system/ports/src</Path>
-        <Checksum>1724453ED96A161750C2576A9FCCB54D</Checksum>
+    <Templates dnOrder="1">
+      <Template dnOrder="0">
+        <Name dnOrder="0">sys_ports_static.c</Name>
+        <Path dnOrder="1">Source&amp;#160;Files/app/system_config/default/framework/system/ports/src</Path>
+        <Checksum dnOrder="2">AAE0BD6F3CAA6EAD747D744A60CD91F1</Checksum>
+        <ProjectFileChecksum dnOrder="3">36CF9F84AF67454877849F915F1C8C2B</ProjectFileChecksum>
       </Template>
-      <Template>
-        <Name>system_init.c</Name>
-        <Path>Source Files/app/system_config/default</Path>
-        <Checksum>8B161326FEF65AA49C478F2A2DFF5CF1</Checksum>
-        <ProjectFileChecksum>755BC7A95DDAFE0CD3B1631E974D01F6</ProjectFileChecksum>
+      <Template dnOrder="1">
+        <Name dnOrder="0">system_init.c</Name>
+        <Path dnOrder="1">Source&amp;#160;Files/app/system_config/default</Path>
+        <Checksum dnOrder="2">28536E6C231BE8015CFCA127EBE8E9A7</Checksum>
+        <ProjectFileChecksum dnOrder="3">755BC7A95DDAFE0CD3B1631E974D01F6</ProjectFileChecksum>
       </Template>
-      <Template>
-        <Name>main.c</Name>
-        <Path>Source Files/app</Path>
+      <Template dnOrder="2">
+        <Name dnOrder="0">sys_devcon_cache.h</Name>
+        <Path dnOrder="1">Source&amp;#160;Files/app/system_config/default/framework/system/devcon/src</Path>
+        <Checksum dnOrder="2">5EB0485AC07A8B25665195B960AFBE5B</Checksum>
+        <ProjectFileChecksum dnOrder="3">018974FC9CF1C31BDD49BF3F979DB57E</ProjectFileChecksum>
       </Template>
-      <Template>
-        <Name>system_tasks.c</Name>
-        <Path>Source Files/app/system_config/default</Path>
-        <Checksum>BE644D0142ACA48D9CA2E6255A02CDBA</Checksum>
+      <Template dnOrder="3">
+        <Name dnOrder="0">main.c</Name>
+        <Path dnOrder="1">Source&amp;#160;Files/app</Path>
       </Template>
-      <Template>
-        <Name>system_config.h</Name>
-        <Path>Header Files/app/system_config/default</Path>
-        <Checksum>B2C40AF2F57BB50BBD5377A02542352F</Checksum>
+      <Template dnOrder="4">
+        <Name dnOrder="0">system_definitions.h</Name>
+        <Path dnOrder="1">Header&amp;#160;Files/app/system_config/default</Path>
+        <Checksum dnOrder="2">A48A5788EA70DF8DE83446BF2FF0DED9</Checksum>
+        <ProjectFileChecksum dnOrder="3">57354E96EA76C37827AE912D438B6CEF</ProjectFileChecksum>
       </Template>
-      <Template>
-        <Name>system_definitions.h</Name>
-        <Path>Header Files/app/system_config/default</Path>
-        <Checksum>B5DB9836EF31F4296B031C95883B6E90</Checksum>
-        <ProjectFileChecksum>57354E96EA76C37827AE912D438B6CEF</ProjectFileChecksum>
+      <Template dnOrder="5">
+        <Name dnOrder="0">system_exceptions.c</Name>
+        <Path dnOrder="1">Source&amp;#160;Files/app/system_config/default</Path>
+        <Checksum dnOrder="2">C6886A1D85FB1927A101D5B41BED7630</Checksum>
+        <ProjectFileChecksum dnOrder="3">F50C1E81E66FE7B03D16CAC1690AB7E4</ProjectFileChecksum>
       </Template>
-      <Template>
-        <Name>system_exceptions.c</Name>
-        <Path>Source Files/app/system_config/default</Path>
-        <Checksum>C111969CA43D6CEA1E9E33A6164E7AE0</Checksum>
+      <Template dnOrder="6">
+        <Name dnOrder="0">sys_devcon.c</Name>
+        <Path dnOrder="1">Source&amp;#160;Files/app/system_config/default/framework/system/devcon/src</Path>
+        <Checksum dnOrder="2">54ADBD4A35BCA03C42C74182FCE41849</Checksum>
+        <ProjectFileChecksum dnOrder="3">B6BCBE3C03653B1978806A4E89A3C643</ProjectFileChecksum>
       </Template>
-      <Template>
-        <Name>app.h</Name>
-        <Path>Header Files/app</Path>
+      <Template dnOrder="7">
+        <Name dnOrder="0">app.c</Name>
+        <Path dnOrder="1">Source&amp;#160;Files/app</Path>
       </Template>
-      <Template>
-        <Name>sys_clk_static.h</Name>
-        <Path>Header Files/app/system_config/default/framework/system/clk</Path>
-        <Checksum>B4BD59D8D7C4DA95DC5E3B57755FD352</Checksum>
+      <Template dnOrder="8">
+        <Name dnOrder="0">sys_devcon_local.h</Name>
+        <Path dnOrder="1">Header&amp;#160;Files/app/system_config/default/framework/system/devcon/src</Path>
+        <Checksum dnOrder="2">B66F9B4DBD85DA7F9DE775E864E01395</Checksum>
+        <ProjectFileChecksum dnOrder="3">A60BD72D3AFB96A269BE26B13D8283AA</ProjectFileChecksum>
       </Template>
-      <Template>
-        <Name>system_interrupt.c</Name>
-        <Path>Source Files/app/system_config/default</Path>
-        <Checksum>C934CFD980878E57EE336D976F540A07</Checksum>
-        <ProjectFileChecksum>722C53B3A8448CBF75BE3D5117E80687</ProjectFileChecksum>
+      <Template dnOrder="9">
+        <Name dnOrder="0">sys_devcon_cache_pic32mz.S</Name>
+        <Path dnOrder="1">Source&amp;#160;Files/app/system_config/default/framework/system/devcon/src</Path>
+        <Checksum dnOrder="2">D0A9CCA1CA85BB1CE7364A5DE10CC07D</Checksum>
+        <ProjectFileChecksum dnOrder="3">48D164617F1CC4CAFCBC4526750E6ADD</ProjectFileChecksum>
       </Template>
-      <Template>
-        <Name>sys_clk_static.c</Name>
-        <Path>Source Files/app/system_config/default/framework/system/clk/src</Path>
-        <Checksum>575F215D857064B3F4C1918BC9455CDA</Checksum>
+      <Template dnOrder="10">
+        <Name dnOrder="0">sys_devcon.h</Name>
+        <Path dnOrder="1">Header&amp;#160;Files/app/system_config/default/framework/system/devcon</Path>
+        <Checksum dnOrder="2">07580DCDEF89D9C79B062544109C5367</Checksum>
+        <ProjectFileChecksum dnOrder="3">CFF7B42E3D930ABCD17F3E48776DE491</ProjectFileChecksum>
       </Template>
-      <Template>
-        <Name>app.c</Name>
-        <Path>Source Files/app</Path>
+      <Template dnOrder="11">
+        <Name dnOrder="0">sys_devcon_pic32mz.c</Name>
+        <Path dnOrder="1">Source&amp;#160;Files/app/system_config/default/framework/system/devcon/src</Path>
+        <Checksum dnOrder="2">D011F212E6410A0C92087C188E1F60AF</Checksum>
+        <ProjectFileChecksum dnOrder="3">5397A1691BB8ECF519A8A4978F738061</ProjectFileChecksum>
+      </Template>
+      <Template dnOrder="12">
+        <Name dnOrder="0">system_tasks.c</Name>
+        <Path dnOrder="1">Source&amp;#160;Files/app/system_config/default</Path>
+        <Checksum dnOrder="2">C2FDF6218CDD9CE0E51AFAC4ACBB5F79</Checksum>
+        <ProjectFileChecksum dnOrder="3">5B23C6E87DD2416AD2FA93707C288C1C</ProjectFileChecksum>
+      </Template>
+      <Template dnOrder="13">
+        <Name dnOrder="0">system_config.h</Name>
+        <Path dnOrder="1">Header&amp;#160;Files/app/system_config/default</Path>
+        <Checksum dnOrder="2">C2819CE3F476C2EC1C0A79DEA6703FE2</Checksum>
+        <ProjectFileChecksum dnOrder="3">0A3EC3058324568DA78365E73D7C2DD3</ProjectFileChecksum>
+      </Template>
+      <Template dnOrder="14">
+        <Name dnOrder="0">app.h</Name>
+        <Path dnOrder="1">Header&amp;#160;Files/app</Path>
+      </Template>
+      <Template dnOrder="15">
+        <Name dnOrder="0">system_interrupt.c</Name>
+        <Path dnOrder="1">Source&amp;#160;Files/app/system_config/default</Path>
+        <Checksum dnOrder="2">C789B02ABAB38CB2AFC7FB18655D1232</Checksum>
+        <ProjectFileChecksum dnOrder="3">722C53B3A8448CBF75BE3D5117E80687</ProjectFileChecksum>
+      </Template>
+      <Template dnOrder="16">
+        <Name dnOrder="0">sys_clk_pic32mz.c</Name>
+        <Path dnOrder="1">Source&amp;#160;Files/app/system_config/default/framework/system/clk/src</Path>
+        <Checksum dnOrder="2">A8EFC3028D3ED6A7DBD91D3675CE1CE4</Checksum>
+        <ProjectFileChecksum dnOrder="3">01C48DFC235F5BDB994F39E70EC5B502</ProjectFileChecksum>
       </Template>
     </Templates>
-    <CompilerItems>
-      <C32>
-        <Include value="C:/MyFiles/x-io/Open Source/Dub-Siren/Dub Siren Firmware/firmware/src"/>
-        <Include value="C:/MyFiles/x-io/Open Source/Dub-Siren/Dub Siren Firmware/firmware/src/system_config/default"/>
-        <Include value="C:/MyFiles/x-io/Open Source/Dub-Siren/Dub Siren Firmware/firmware/src/default"/>
-        <Include value="C:/microchip/harmony/v1_11/framework"/>
-        <Include value="C:/MyFiles/x-io/Open Source/Dub-Siren/Dub Siren Firmware/firmware/src/system_config/default/framework"/>
+    <CompilerItems dnOrder="2">
+      <C32 dnOrder="0">
+        <Include dnOrder="0" value="C:\MyFiles\x-io\Open Source\Dub-Siren\Dub Siren Firmware\firmware\src"/>
+        <Include dnOrder="1" value="C:\MyFiles\x-io\Open Source\Dub-Siren\Dub Siren Firmware\firmware\src\system_config\default"/>
+        <Include dnOrder="2" value="C:\MyFiles\x-io\Open Source\Dub-Siren\Dub Siren Firmware\firmware\src\default"/>
+        <Include dnOrder="3" value="C:\microchip\harmony\v2_04\framework"/>
+        <Include dnOrder="4" value="C:\MyFiles\x-io\Open Source\Dub-Siren\Dub Siren Firmware\firmware\src\system_config\default\framework"/>
       </C32>
     </CompilerItems>
-    <Libraries>
-      <Library value="../../../../../../../microchip/harmony/v1_11/bin/framework/peripheral/PIC32MZ2048EFH064_peripherals.a"/>
+    <Libraries dnOrder="3">
+      <Library dnOrder="0" value="../../../../../../../microchip/harmony/v2_04/bin/framework/peripheral/PIC32MZ2048EFH064_peripherals.a"/>
     </Libraries>
   </Manifest>
-</configuration>
+</Configuration>

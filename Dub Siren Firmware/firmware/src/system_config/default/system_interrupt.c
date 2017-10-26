@@ -59,8 +59,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 // *****************************************************************************
 
-#include <xc.h>
-#include <sys/attribs.h>
+#include "system/common/sys_common.h"
 //#include "app.h"
 #include "system_definitions.h"
 
@@ -69,8 +68,8 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // Section: System Interrupt Vector Functions
 // *****************************************************************************
 // *****************************************************************************
+
  
 /*******************************************************************************
  End of File
 */
-
