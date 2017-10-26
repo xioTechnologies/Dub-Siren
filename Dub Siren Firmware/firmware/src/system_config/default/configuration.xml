@@ -180,7 +180,7 @@
       <Template dnOrder="16">
         <Name dnOrder="0">sys_clk_pic32mz.c</Name>
         <Path dnOrder="1">Source&amp;#160;Files/app/system_config/default/framework/system/clk/src</Path>
-        <Checksum dnOrder="2">A8EFC3028D3ED6A7DBD91D3675CE1CE4</Checksum>
+        <Checksum dnOrder="2">C0640AEB65BAAE07A80E7053EA1FFB17</Checksum>
         <ProjectFileChecksum dnOrder="3">01C48DFC235F5BDB994F39E70EC5B502</ProjectFileChecksum>
       </Template>
     </Templates>

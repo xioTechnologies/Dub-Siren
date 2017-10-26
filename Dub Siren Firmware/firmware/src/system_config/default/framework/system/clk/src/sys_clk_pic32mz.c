@@ -120,12 +120,12 @@ void SYS_CLK_Initialize( const SYS_CLK_INIT const * clkInit )
 
     /* Enable and configure REFCLKO1*/
     
-    /* ROSEL System Clock SYSCLK */
-    PLIB_OSC_ReferenceOscBaseClockSelect ( OSC_ID_0, OSC_REFERENCE_1, 0 );
+    /* ROSEL Peripheral Clock #1 PBCLK1 */
+    PLIB_OSC_ReferenceOscBaseClockSelect ( OSC_ID_0, OSC_REFERENCE_1, 1 );
     /* RODIV */
-    PLIB_OSC_ReferenceOscDivisorValueSet ( OSC_ID_0, OSC_REFERENCE_1, 5 );
+    PLIB_OSC_ReferenceOscDivisorValueSet ( OSC_ID_0, OSC_REFERENCE_1, 1 );
     /* ROTRIM */
-    PLIB_OSC_ReferenceOscTrimSet ( OSC_ID_0, OSC_REFERENCE_1, 65 );
+    PLIB_OSC_ReferenceOscTrimSet ( OSC_ID_0, OSC_REFERENCE_1, 363 );
 
     PLIB_OSC_ReferenceOscEnable ( OSC_ID_0, OSC_REFERENCE_1 );
     /* Disable REFCLK1_OE*/
