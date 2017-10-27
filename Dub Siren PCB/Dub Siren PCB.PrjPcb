@@ -29,7 +29,7 @@ PushECOToAnnotationFile=1
 DItemRevisionGUID=
 ReportSuppressedErrorsInMessages=0
 ForceUpdateCount=0
-OutputPath=Outputs
+OutputPath=
 LogFolderPath=
 ManagedProjectGUID=
 LinkedManagedProjectGUID=
@@ -95,74 +95,50 @@ DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\BOM\BOM_Par
 DItemRevisionGUID=
 
 [GeneratedDocument2]
-DocumentPath=Outputs\Design Rule Check - PCB1.html
-DItemRevisionGUID=
-
-[GeneratedDocument3]
 DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\NC Drill\PCB1-RoundHoles.TXT
 DItemRevisionGUID=
 
-[GeneratedDocument4]
+[GeneratedDocument3]
 DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\NC Drill\PCB1-SlotHoles.TXT
 DItemRevisionGUID=
 
-[GeneratedDocument5]
-DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\NC Drill\PCB1.DRR
-DItemRevisionGUID=
-
-[GeneratedDocument6]
-DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.EXTREP
-DItemRevisionGUID=
-
-[GeneratedDocument7]
+[GeneratedDocument4]
 DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.GBL
 DItemRevisionGUID=
 
-[GeneratedDocument8]
+[GeneratedDocument5]
 DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.GBO
 DItemRevisionGUID=
 
-[GeneratedDocument9]
+[GeneratedDocument6]
 DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.GBP
 DItemRevisionGUID=
 
-[GeneratedDocument10]
+[GeneratedDocument7]
 DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.GBS
 DItemRevisionGUID=
 
-[GeneratedDocument11]
+[GeneratedDocument8]
 DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.GKO
 DItemRevisionGUID=
 
-[GeneratedDocument12]
+[GeneratedDocument9]
 DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.GTL
 DItemRevisionGUID=
 
-[GeneratedDocument13]
+[GeneratedDocument10]
 DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.GTO
 DItemRevisionGUID=
 
-[GeneratedDocument14]
+[GeneratedDocument11]
 DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.GTP
 DItemRevisionGUID=
 
-[GeneratedDocument15]
+[GeneratedDocument12]
 DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.GTS
 DItemRevisionGUID=
 
-[GeneratedDocument16]
-DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\NC Drill\PCB1.LDP
-DItemRevisionGUID=
-
-[GeneratedDocument17]
-DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.REP
-DItemRevisionGUID=
-
-[GeneratedDocument18]
-DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\Gerber\PCB1.RUL
-DItemRevisionGUID=
-
-[GeneratedDocument19]
+[GeneratedDocument13]
 DocumentPath=Default Configuration\Project Outputs for Dub Siren PCB\ExportSTEP\PCB1.step
 DItemRevisionGUID=
 
@@ -179,7 +155,7 @@ DocumentReferenceClass1=DocumentReference
 OutputJobFileName1=Dub Siren PCB.OutJob
 
 [Generic_EDE]
-OutputDir=Outputs
+OutputDir=
 
 [OutputGroup1]
 Name=Netlist Outputs
