@@ -8,6 +8,7 @@
 // Includes
 
 #include "DebouncedButton/DebouncedButton.h"
+#include "DefaultPresets.h"
 #include "Eeprom/Eeprom.h"
 #include "I2cBitBang/I2cBitBang.h"
 #include "IODefinitions.h"
@@ -70,6 +71,9 @@ static void ReadPotentiometers(SynthesiserParameters * const synthesiserParamete
 static int InterpretDiscretePotentiometer(const float potentiometer, const unsigned int numberOfValues, const bool omitDeadbands);
 static bool ComparePotentiometers(const float potentiometerA, const float potentiometerB);
 static void PrintSynthesiserParameters(const SynthesiserParameters * const synthesiserParameters);
+static char* DelayFilterTypeToString(DelayFilterType delayFilterType);
+static char* LfoWaveformToString(LfoWaveform lfoWaveform);
+static char* VcoWaveformToString(VcoWaveform vcoWaveform);
 
 //------------------------------------------------------------------------------
 // Variable declarations
@@ -175,10 +179,16 @@ static void LoadPresetsFromEeprom() {
  * @brief Loads default presets.
  */
 static void RestoreDefaultPresets() {
-    unsigned int presetKeyIndex;
-    for (presetKeyIndex = 0; presetKeyIndex < NUMBER_OF_PRESET_KEYS; presetKeyIndex++) {
-        eepromData.presets[presetKeyIndex] = defaultSynthesiserParameters;
-    }
+    eepromData.presets[0] = fogHorn;
+    eepromData.presets[1] = levelUp;
+    eepromData.presets[2] = marioCoin;
+    eepromData.presets[3] = bombFalling;
+    eepromData.presets[4] = policeSiren;
+    eepromData.presets[5] = classicDubSirenLow;
+    eepromData.presets[6] = highHat;
+    eepromData.presets[7] = classicDubSirenHigh;
+    eepromData.presets[8] = bombExploding;
+    eepromData.presets[9] = airRaidSiren;
     SavePresetsToFromEeprom();
 }
 
@@ -491,7 +501,7 @@ static int InterpretDiscretePotentiometer(const float potentiometer, const unsig
 }
 
 /**
- * @brief Prints synthesiser parameters to the UART.
+ * @brief Prints synthesiser parameters structure members with syntax.
  * @param synthesiserParameters Synthesiser parameters to be printed.
  */
 static void PrintSynthesiserParameters(const SynthesiserParameters * const synthesiserParameters) {
@@ -499,31 +509,92 @@ static void PrintSynthesiserParameters(const SynthesiserParameters * const synth
     snprintf(string, sizeof (string),
             "\r\n"
             "TRIGGERED:\r\n"
-            "lfoWaveform            = %i\r\n"
-            "lfoShape               = %f\r\n"
-            "lfoFrequency           = %f\r\n"
-            "lfoAmplitude           = %f\r\n"
-            "lfoGateControl         = %s\r\n"
-            "vcoWaveform            = %i\r\n"
-            "vcoFrequency           = %f\r\n"
-            "delayTime              = %f\r\n"
-            "delayFeedback          = %f\r\n"
-            "delayFilterType        = %i\r\n"
-            "delayFilterFrequency   = %f\r\n"
+            ".lfoWaveform            = %s,\r\n"
+            ".lfoShape               = %f,\r\n"
+            ".lfoFrequency           = %f,\r\n"
+            ".lfoAmplitude           = %f,\r\n"
+            ".lfoGateControl         = %s,\r\n"
+            ".vcoWaveform            = %s,\r\n"
+            ".vcoFrequency           = %f,\r\n"
+            ".delayTime              = %f,\r\n"
+            ".delayFeedback          = %f,\r\n"
+            ".delayFilterType        = %s,\r\n"
+            ".delayFilterFrequency   = %f,\r\n"
             ,
-            synthesiserParameters->lfoWaveform,
+            LfoWaveformToString(synthesiserParameters->lfoWaveform),
             (double) synthesiserParameters->lfoShape,
             (double) synthesiserParameters->lfoFrequency,
             (double) synthesiserParameters->lfoAmplitude,
             synthesiserParameters->lfoGateControl == true ? "true" : "false",
-            synthesiserParameters->vcoWaveform,
+            VcoWaveformToString(synthesiserParameters->vcoWaveform),
             (double) synthesiserParameters->vcoFrequency,
             (double) synthesiserParameters->delayTime,
             (double) synthesiserParameters->delayFeedback,
-            synthesiserParameters->delayFilterType,
+            DelayFilterTypeToString(synthesiserParameters->delayFilterType),
             (double) synthesiserParameters->delayFilterFrequency
             );
     Uart1WriteStringIfReady(string);
+}
+
+/**
+ * @brief Returns LFO waveform enumeration string.
+ */
+static char* LfoWaveformToString(LfoWaveform lfoWaveform) {
+    switch (lfoWaveform) {
+        case LfoWaveformSine:
+            return (char *) &"LfoWaveformSine";
+        case LfoWaveformTriangle:
+            return (char *) &"LfoWaveformTriangle";
+        case LfoWaveformSawtooth:
+            return (char *) &"LfoWaveformSawtooth";
+        case LfoWaveformSquare:
+            return (char *) &"LfoWaveformSquare";
+        case LfoWaveformSteppedTriangle:
+            return (char *) &"LfoWaveformSteppedTriangle";
+        case LfoWaveformSteppedSawtooth:
+            return (char *) &"LfoWaveformSteppedSawtooth";
+        case LfoWaveformNumberOfWaveforms:
+            break;
+    }
+    return (char *) &"Invalid";
+}
+
+/**
+ * @brief Returns VCO waveform enumeration string.
+ */
+static char* VcoWaveformToString(VcoWaveform vcoWaveform) {
+    switch (vcoWaveform) {
+        case VcoWaveformSine:
+            return (char *) &"VcoWaveformSine";
+        case VcoWaveformTriangle:
+            return (char *) &"VcoWaveformTriangle";
+        case VcoWaveformSawtooth:
+            return (char *) &"VcoWaveformSawtooth";
+        case VcoWaveformSquare:
+            return (char *) &"VcoWaveformSquare";
+        case VcoWaveformOneBitNoise:
+            return (char *) &"VcoWaveformOneBitNoise";
+        case VcoWaveformPulse:
+            return (char *) &"VcoWaveformPulse";
+        case VcoWaveformNumberOfWaveforms:
+            break;
+    }
+    return (char *) &"Invalid";
+}
+
+/**
+ * @brief Returns delay filter type enumeration string.
+ */
+static char* DelayFilterTypeToString(DelayFilterType delayFilterType) {
+    switch (delayFilterType) {
+        case DelayFilterTypeNone:
+            return (char *) &"DelayFilterTypeNone";
+        case DelayFilterTypeLowPass:
+            return (char *) &"DelayFilterTypeLowPass";
+        case DelayFilterTypeHighPass:
+            return (char *) &"DelayFilterTypeHighPass";
+    }
+    return (char *) &"Invalid";
 }
 
 //------------------------------------------------------------------------------

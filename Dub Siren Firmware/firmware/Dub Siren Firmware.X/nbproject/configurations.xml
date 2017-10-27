@@ -70,13 +70,16 @@
         <itemPath>../src/Uart/Uart1.h</itemPath>
         <itemPath>../src/Uart/UartCommon.h</itemPath>
       </logicalFolder>
+      <logicalFolder name="f6" displayName="UserInterface" projectFiles="true">
+        <itemPath>../src/UserInterface/UserInterface.h</itemPath>
+        <itemPath>../src/UserInterface/DefaultPresets.h</itemPath>
+      </logicalFolder>
       <itemPath>../src/Dac/Dac.h</itemPath>
       <itemPath>../src/DebouncedButton/DebouncedButton.h</itemPath>
       <itemPath>../src/Eeprom/Eeprom.h</itemPath>
       <itemPath>../src/I2CBitBang/I2CBitBang.h</itemPath>
       <itemPath>../src/Potentiometers/Potentiometers.h</itemPath>
       <itemPath>../src/Timer/Timer.h</itemPath>
-      <itemPath>../src/UserInterface/UserInterface.h</itemPath>
       <itemPath>../src/FirmwareVersion.h</itemPath>
       <itemPath>../src/IODefinitions.h</itemPath>
       <itemPath>../src/MathHelpers.h</itemPath>
@@ -142,13 +145,16 @@
         <itemPath>../src/Uart/Uart1.c</itemPath>
         <itemPath>../src/Uart/UartCommon.c</itemPath>
       </logicalFolder>
+      <logicalFolder name="f6" displayName="UserInterface" projectFiles="true">
+        <itemPath>../src/UserInterface/UserInterface.c</itemPath>
+        <itemPath>../src/UserInterface/DefaultPresets.c</itemPath>
+      </logicalFolder>
       <itemPath>../src/Dac/Dac.c</itemPath>
       <itemPath>../src/DebouncedButton/DebouncedButton.c</itemPath>
       <itemPath>../src/Eeprom/Eeprom.c</itemPath>
       <itemPath>../src/I2CBitBang/I2CBitBang.c</itemPath>
       <itemPath>../src/Potentiometers/Potentiometers.c</itemPath>
       <itemPath>../src/Timer/Timer.c</itemPath>
-      <itemPath>../src/UserInterface/UserInterface.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
