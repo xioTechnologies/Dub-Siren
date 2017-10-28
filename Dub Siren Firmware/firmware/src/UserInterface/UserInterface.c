@@ -85,7 +85,6 @@ static DebouncedButton presetKeys[NUMBER_OF_PRESET_KEYS];
 static I2cBitBang i2cBitBang;
 static EepromData eepromData;
 static bool ignorePotentiometers;
-static bool potentiometerIgnored[NUMBER_OF_POTENTIOMETERS];
 static bool undoIgnorePotentiometers;
 
 //------------------------------------------------------------------------------
@@ -350,6 +349,7 @@ static void ReadPotentiometers(SynthesiserParameters * const synthesiserParamete
     PotentiometersGetValues(potentiometers);
 
     // Ignore potentiometers
+    static bool potentiometerIgnored[NUMBER_OF_POTENTIOMETERS];
     static float potentiometersWhenIgnored[NUMBER_OF_POTENTIOMETERS];
     if (ignorePotentiometers == true) {
         unsigned int index;
@@ -369,13 +369,18 @@ static void ReadPotentiometers(SynthesiserParameters * const synthesiserParamete
         undoIgnorePotentiometers = false;
     }
 
+    // Undo ignore potentiometer if value changed
+    unsigned int index;
+    for (index = 0; index < NUMBER_OF_POTENTIOMETERS; index++) {
+        if (potentiometerIgnored[index] == true) {
+            potentiometerIgnored[index] = ComparePotentiometers(potentiometers[index], potentiometersWhenIgnored[index]);
+        }
+    }
+
     // LFO waveform
-    unsigned int index = PotentiometerIndexLfoWaveform;
-    if (potentiometerIgnored[index] == true) {
-        potentiometerIgnored[index] = ComparePotentiometers(potentiometers[index], potentiometersWhenIgnored[index]);
-    } else {
-        static int validValue = -1;
-        const int currentValue = InterpretDiscretePotentiometer(potentiometers[index], LfoWaveformNumberOfWaveforms, validValue != -1);
+    if (potentiometerIgnored[PotentiometerIndexLfoWaveform] == false) {
+        static int validValue = -1; // initial value is invalid to force use of discrete potentiometer value even if in deadband
+        const int currentValue = InterpretDiscretePotentiometer(potentiometers[PotentiometerIndexLfoWaveform], LfoWaveformNumberOfWaveforms, validValue != -1);
         if (currentValue != -1) {
             validValue = currentValue;
         }
@@ -383,35 +388,23 @@ static void ReadPotentiometers(SynthesiserParameters * const synthesiserParamete
     }
 
     // LFO shape
-    index = PotentiometerIndexLfoShape;
-    if (potentiometerIgnored[index] == true) {
-        potentiometerIgnored[index] = ComparePotentiometers(potentiometers[index], potentiometersWhenIgnored[index]);
-    } else {
-        synthesiserParameters->lfoShape = potentiometers[index];
+    if (potentiometerIgnored[PotentiometerIndexLfoShape] == false) {
+        synthesiserParameters->lfoShape = potentiometers[PotentiometerIndexLfoShape];
     }
 
     // LFO frequency
-    index = PotentiometerIndexLfoFrequency;
-    if (potentiometerIgnored[index] == true) {
-        potentiometerIgnored[index] = ComparePotentiometers(potentiometers[index], potentiometersWhenIgnored[index]);
-    } else {
-        synthesiserParameters->lfoFrequency = CUBE(potentiometers[index]) * 15.0f;
+    if (potentiometerIgnored[PotentiometerIndexLfoFrequency] == false) {
+        synthesiserParameters->lfoFrequency = CUBE(potentiometers[PotentiometerIndexLfoFrequency]) * 15.0f;
     }
 
     // VCO frequency
-    index = PotentiometerIndexVcoFrequency;
-    if (potentiometerIgnored[index] == true) {
-        potentiometerIgnored[index] = ComparePotentiometers(potentiometers[index], potentiometersWhenIgnored[index]);
-    } else {
-        synthesiserParameters->vcoFrequency = MAP(CUBE(potentiometers[index]), 0.0f, 1.0f, MINIMUM_VCO_FREQUENCY, MAXIMUM_VCO_FREQUENCY);
+    if (potentiometerIgnored[PotentiometerIndexVcoFrequency] == false) {
+        synthesiserParameters->vcoFrequency = MAP(CUBE(potentiometers[PotentiometerIndexVcoFrequency]), 0.0f, 1.0f, MINIMUM_VCO_FREQUENCY, MAXIMUM_VCO_FREQUENCY);
     }
 
     // LFO amplitude
-    index = PotentiometerIndexLfoAmplitude;
-    if (potentiometerIgnored[index] == true) {
-        potentiometerIgnored[index] = ComparePotentiometers(potentiometers[index], potentiometersWhenIgnored[index]);
-    } else {
-        synthesiserParameters->lfoAmplitude = CUBE(2.0f * (potentiometers[index] - 0.5f)) * (MAXIMUM_VCO_FREQUENCY / 2.0f);
+    if (potentiometerIgnored[PotentiometerIndexLfoAmplitude] == false) {
+        synthesiserParameters->lfoAmplitude = CUBE(2.0f * (potentiometers[PotentiometerIndexLfoAmplitude] - 0.5f)) * (MAXIMUM_VCO_FREQUENCY / 2.0f);
     }
     float absLfoAmplitude = fabs(synthesiserParameters->lfoAmplitude);
     if ((synthesiserParameters->vcoFrequency - absLfoAmplitude) < MINIMUM_VCO_FREQUENCY) {
@@ -423,12 +416,9 @@ static void ReadPotentiometers(SynthesiserParameters * const synthesiserParamete
     synthesiserParameters->lfoAmplitude = copysignf(absLfoAmplitude, synthesiserParameters->lfoAmplitude);
 
     // VCO waveform
-    index = PotentiometerIndexVcoWaveform;
-    if (potentiometerIgnored[index] == true) {
-        potentiometerIgnored[index] = ComparePotentiometers(potentiometers[index], potentiometersWhenIgnored[index]);
-    } else {
-        static int validValue = -1;
-        const int currentValue = InterpretDiscretePotentiometer(potentiometers[index], VcoWaveformNumberOfWaveforms, validValue != -1);
+    if (potentiometerIgnored[PotentiometerIndexVcoWaveform] == false) {
+        static int validValue = -1; // initial value is invalid to force use of discrete potentiometer value even if in deadband
+        const int currentValue = InterpretDiscretePotentiometer(potentiometers[PotentiometerIndexVcoWaveform], VcoWaveformNumberOfWaveforms, validValue != -1);
         if (currentValue != -1) {
             validValue = currentValue;
         }
