@@ -79,7 +79,7 @@ void Uart1Initialise(const UartSettings * const uartSettings) {
 
     // Configure interrupt
     SYS_INT_VectorPrioritySet(INT_VECTOR_UART1_RX, INTERRUPT_PRIORITY); // set RX interrupt priority
-    SYS_INT_VectorPrioritySet(INT_VECTOR_UART1_TX, INTERRUPT_PRIORITY); // set TX interrupt priority    
+    SYS_INT_VectorPrioritySet(INT_VECTOR_UART1_TX, INTERRUPT_PRIORITY); // set TX interrupt priority
     SYS_INT_SourceEnable(INT_SOURCE_USART_1_RECEIVE); // enable RX interrupt
 }
 

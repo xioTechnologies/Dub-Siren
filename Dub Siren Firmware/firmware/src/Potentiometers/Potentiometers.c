@@ -24,11 +24,6 @@
 #define OVERSAMPLING (100)
 
 /**
- * @breif Maximum ADC value.
- */
-#define MAXIMUM_ADC_VALUE ((1 << 12) - 1)
-
-/**
  * @brief ADC data accumulators for oversampled averaging.
  */
 typedef struct {
@@ -45,6 +40,11 @@ typedef struct {
 } AdcDataAccumulator;
 
 #define SAMC_VALUE (100)
+
+//------------------------------------------------------------------------------
+// Function prototypes
+
+static inline __attribute__((always_inline)) float CalculatePotentiometerValue(const uint32_t inputAccumulator);
 
 //------------------------------------------------------------------------------
 // Variables
@@ -171,7 +171,7 @@ void PotentiometersGetValues(float potentiometers[NUMBER_OF_POTENTIOMETERS]) {
 }
 
 /**
- * @brief ADC interrupt to store ADC results.
+ * @brief ADC end of scan interrupt to store ADC results.
  */
 void __ISR(_ADC_EOS_VECTOR) AdcEndOfScanInterrupt() {
 
@@ -191,15 +191,15 @@ void __ISR(_ADC_EOS_VECTOR) AdcEndOfScanInterrupt() {
     if (adcDataAccumulator.sampleCount >= OVERSAMPLING) {
 
         // Calculate average
-        currentPotentiometers[0] = adcDataAccumulator.input1 * (1.0f / ((float) MAXIMUM_ADC_VALUE * (float) OVERSAMPLING));
-        currentPotentiometers[1] = adcDataAccumulator.input2 * (1.0f / ((float) MAXIMUM_ADC_VALUE * (float) OVERSAMPLING));
-        currentPotentiometers[2] = adcDataAccumulator.input3 * (1.0f / ((float) MAXIMUM_ADC_VALUE * (float) OVERSAMPLING));
-        currentPotentiometers[3] = adcDataAccumulator.input4 * (1.0f / ((float) MAXIMUM_ADC_VALUE * (float) OVERSAMPLING));
-        currentPotentiometers[4] = adcDataAccumulator.input5 * (1.0f / ((float) MAXIMUM_ADC_VALUE * (float) OVERSAMPLING));
-        currentPotentiometers[5] = adcDataAccumulator.input6 * (1.0f / ((float) MAXIMUM_ADC_VALUE * (float) OVERSAMPLING));
-        currentPotentiometers[6] = adcDataAccumulator.input7 * (1.0f / ((float) MAXIMUM_ADC_VALUE * (float) OVERSAMPLING));
-        currentPotentiometers[7] = adcDataAccumulator.input8 * (1.0f / ((float) MAXIMUM_ADC_VALUE * (float) OVERSAMPLING));
-        currentPotentiometers[8] = adcDataAccumulator.input9 * (1.0f / ((float) MAXIMUM_ADC_VALUE * (float) OVERSAMPLING));
+        currentPotentiometers[0] = CalculatePotentiometerValue(adcDataAccumulator.input1);
+        currentPotentiometers[1] = CalculatePotentiometerValue(adcDataAccumulator.input2);
+        currentPotentiometers[2] = CalculatePotentiometerValue(adcDataAccumulator.input3);
+        currentPotentiometers[3] = CalculatePotentiometerValue(adcDataAccumulator.input4);
+        currentPotentiometers[4] = CalculatePotentiometerValue(adcDataAccumulator.input5);
+        currentPotentiometers[5] = CalculatePotentiometerValue(adcDataAccumulator.input6);
+        currentPotentiometers[6] = CalculatePotentiometerValue(adcDataAccumulator.input7);
+        currentPotentiometers[7] = CalculatePotentiometerValue(adcDataAccumulator.input8);
+        currentPotentiometers[8] = CalculatePotentiometerValue(adcDataAccumulator.input9);
 
         // Reset accumulators
         adcDataAccumulator.sampleCount = 0;
@@ -222,6 +222,14 @@ void __ISR(_ADC_EOS_VECTOR) AdcEndOfScanInterrupt() {
 
     // Trigger next conversion
     ADCCON3bits.GSWTRG = 1;
+}
+
+/**
+ * @brief Calculates the oversampled potentiometer value as the mean of the
+ * oversampled ADC measurements normalised to a range of 0.0 to 1.0.
+ */
+static inline __attribute__((always_inline)) float CalculatePotentiometerValue(const uint32_t inputAccumulator) {
+    return (float) inputAccumulator * (1.0f / ((float) OVERSAMPLING * 4095.0f));
 }
 
 //------------------------------------------------------------------------------
