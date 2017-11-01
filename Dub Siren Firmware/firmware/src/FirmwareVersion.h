@@ -10,7 +10,7 @@
 //------------------------------------------------------------------------------
 // Definitions
 
-#define FIRMWARE_VERSION "v1.0" " (" __DATE__ " " __TIME__ ")"
+#define FIRMWARE_VERSION "v1.1" " (" __DATE__ " " __TIME__ ")"
 
 #endif
 
