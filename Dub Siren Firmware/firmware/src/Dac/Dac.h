@@ -1,7 +1,7 @@
 /**
  * @file Dac.h
  * @author Seb Madgwick
- * @brief CS4354 audio DAC interface implemented for 24-bit mono at 96 kHz.
+ * @brief CS4354 audio DAC interface.
  */
 
 #ifndef DAC_H

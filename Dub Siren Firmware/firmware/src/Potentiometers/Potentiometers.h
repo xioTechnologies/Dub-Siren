@@ -1,8 +1,8 @@
 /**
  * @file Potentiometers.h
  * @author Seb Madgwick
- * @brief Potentiometers module to provide high-resolution measurement of
- * potentiometers values through oversampling.
+ * @brief Provides high-resolution measurement of potentiometers values through
+ * oversampling.
  */
 
 #ifndef POTENTIOMETERS_H

@@ -27,7 +27,7 @@ static inline __attribute__((always_inline)) void Update(DebouncedButton * const
 // Functions
 
 /**
- * @brief Initialises an OSC bundle structure with a specified OSC time tag.
+ * @brief Initialises the debounced button structure.
  * @param debouncedButton Debounced button structure to be initialised.
  * @param port Port register, e.g. PORTB.
  * @param portBit Port bit number, e.g. 7 for RB7.

@@ -56,7 +56,7 @@ int main() {
 
     // Main program loop
     while (true) {
-        UserInterfaceDoTasks();
+        UserInterfaceTasks();
     }
 }
 

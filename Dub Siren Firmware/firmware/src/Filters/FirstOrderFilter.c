@@ -21,7 +21,7 @@
  * @param FirstOrderFilter First-order filter structure.
  * @param cornerFrequency Corner frequency in Hz.
  * @param sampleFrequency Sample frequency in Hz.
- * @param isHighPass True if high-pass filter, False if low-pass filter.
+ * @param isHighPass True if high-pass filter, false if low-pass filter.
  */
 void FirstOrderFilterSetCornerFrequency(FirstOrderFilter * const firstOrderFilter, const float cornerFrequency, const float sampleFrequency, const bool isHighPass) {
     firstOrderFilter->isHighPass = isHighPass;

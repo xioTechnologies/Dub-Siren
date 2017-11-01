@@ -17,7 +17,7 @@
 // Definitions
 
 /**
- * @bief Number of timer ticks per second.  Used for timing calculations.
+ * @bief Number of timer ticks per second.
  */
 #define TIMER_TICKS_PER_SECOND ((uint32_t) SYS_CLK_BUS_PERIPHERAL_1)
 

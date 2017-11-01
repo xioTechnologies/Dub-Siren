@@ -1,8 +1,8 @@
 /**
  * @file Potentiometers.c
  * @author Seb Madgwick
- * @brief Potentiometers module to provide high-resolution measurement of
- * potentiometers values through oversampling.
+ * @brief Provides high-resolution measurement of potentiometers values through
+ * oversampling.
  *
  * Assumes PBLCK3 is 84 MHz so that TQ = 11.9 ns and TAD = 23.8 ns.
  */
@@ -19,7 +19,7 @@
 // Definitions
 
 /**
- * @breif Oversampling rate.  Must be an integer value.
+ * @breif Oversampling rate.
  */
 #define OVERSAMPLING (100)
 
@@ -56,7 +56,7 @@ static float currentPotentiometers[NUMBER_OF_POTENTIOMETERS];
 // Functions
 
 /**
- * @brief Initialises module.  This function should be called once on system
+ * @brief Initialises module.  This function should be called once, on system
  * start up.
  */
 void PotentiometersInitialise() {

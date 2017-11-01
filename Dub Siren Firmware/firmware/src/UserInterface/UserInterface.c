@@ -91,7 +91,7 @@ static bool undoIgnorePotentiometers;
 // Functions
 
 /**
- * @brief Initialises module.  This function should be called once on system
+ * @brief Initialises module.  This function should be called once, on system
  * start up.
  */
 void UserInterfaceInitialise() {
@@ -208,10 +208,10 @@ static void SavePresetsToFromEeprom() {
 }
 
 /**
- * @brief Do tasks.  This function should be called repeatedly within the main
- * program loop.
+ * @brief Do module tasks.  This function should be called repeatedly within the
+ * main program loop.
  */
-void UserInterfaceDoTasks() {
+void UserInterfaceTasks() {
     static SynthesiserParameters synthesiserParameters;
     static bool nonPresetLfoGateControl;
 

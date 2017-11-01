@@ -1,7 +1,7 @@
 /**
  * @file Dac.c
  * @author Seb Madgwick
- * @brief CS4354 audio DAC interface implemented for 24-bit mono at 96 kHz.
+ * @brief CS4354 audio DAC interface.
  *
  * REFCLKO1 is configured for 24.576 MHz using MPLAB Harmony.  This corresponds
  * to an LRCK value of 96 kHz and I2S data clock of SCLK of 6.144 MHz (64 bits
@@ -28,7 +28,7 @@ static int buffer;
 // Functions
 
 /**
- * @breif Initialises module.  This function should be called once on system
+ * @breif Initialises module.  This function should be called once, on system
  * start up.
  * @param audioUpdate External audio update function.  The audio update function
  * must call DacWriteBuffer immediately.

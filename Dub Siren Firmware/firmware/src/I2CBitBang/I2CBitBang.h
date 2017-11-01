@@ -26,8 +26,8 @@
 #define I2C_READ_ADDRESS(address) ((address << 1) | 1)
 
 /**
- * @brief I2C bit-bang button structure.  Structure members used internally and
- * should not be used by the user application.
+ * @brief I2C bit-bang structure.  Structure members used internally and should
+ * not be used by the user application.
  */
 typedef struct {
     void (*waitHalfClockCycle)();

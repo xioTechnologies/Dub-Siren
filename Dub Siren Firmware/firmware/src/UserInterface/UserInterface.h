@@ -11,7 +11,7 @@
 // Function prototypes
 
 void UserInterfaceInitialise();
-void UserInterfaceDoTasks();
+void UserInterfaceTasks();
 
 #endif
 

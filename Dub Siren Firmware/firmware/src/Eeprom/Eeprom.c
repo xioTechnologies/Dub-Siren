@@ -32,8 +32,8 @@ static void StartSequence(const I2cBitBang * const i2cBitBang, const unsigned in
 // Functions
 
 /**
- * @brief Read byte array from specified start address.  The start address and
- * number of bytes may be arbitrary.
+ * @brief Reads byte array from specified start address.
+ * @param i2cBitBang I2C bit bang structure.
  * @param address Start address of EEPROM memory.
  * @param destination Destination address of byte array.
  * @param numberOfBytes Number of bytes to read.
@@ -59,8 +59,8 @@ void EepromRead(const I2cBitBang * const i2cBitBang, const unsigned int address,
 }
 
 /**
- * @brief Writes byte array to specified start address.   The start address and
- * number of bytes may be arbitrary.
+ * @brief Writes byte array to specified start address.
+ * @param i2cBitBang I2C bit bang structure.
  * @param address Start address of EEPROM memory.
  * @param source Source address of byte array.
  * @param numberOfBytes Number of bytes to written.
@@ -85,6 +85,7 @@ void EepromWrite(const I2cBitBang * const i2cBitBang, unsigned int address, cons
  * @brief Start sequence common to read and write functions.  Implements
  * 'acknowledge polling' to minimise delay while device is engaged in write
  * cycle.
+ * @param i2cBitBang I2C bit bang structure.
  * @param address Start address of EEPROM memory.
  */
 static void StartSequence(const I2cBitBang * const i2cBitBang, const unsigned int address) {
@@ -99,6 +100,7 @@ static void StartSequence(const I2cBitBang * const i2cBitBang, const unsigned in
 
 /**
  * @brief Erases the entire EEPROM.  All data bytes are set to 0xFF.
+ * @param i2cBitBang I2C bit bang structure.
  */
 void EepromEraseAll(const I2cBitBang * const i2cBitBang) {
     const char blankPage[EEPROM_PAGE_SIZE] = {[0 ... (EEPROM_PAGE_SIZE - 1)] = 0xFF};

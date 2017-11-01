@@ -67,7 +67,7 @@ static CascadeFilter delayFilter;
 // Functions
 
 /**
- * @brief Initialises module.  This function should be called once on system
+ * @brief Initialises module.  This function should be called once, on system
  * start up.
  */
 void SynthesiserInitialise() {
