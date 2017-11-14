@@ -10,7 +10,7 @@
 #include "DebouncedButton/DebouncedButton.h"
 #include "DefaultPresets.h"
 #include "Eeprom/Eeprom.h"
-#include "I2cBitBang/I2cBitBang.h"
+#include "I2C/I2cBitBang.h"
 #include "IODefinitions.h"
 #include <math.h> // fabs, copysignf
 #include "MathHelpers.h"

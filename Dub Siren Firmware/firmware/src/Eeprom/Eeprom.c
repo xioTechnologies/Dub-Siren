@@ -42,7 +42,7 @@ void EepromRead(const I2cBitBang * const i2cBitBang, const unsigned int address,
     StartSequence(i2cBitBang, address);
     I2CBitBangStop(i2cBitBang);
     I2CBitBangStart(i2cBitBang);
-    I2CBitBangSend(i2cBitBang, I2C_READ_ADDRESS(I2C_ADDRESS));
+    I2CBitBangSend(i2cBitBang, I2CSlaveAddressRead(I2C_ADDRESS));
     if (numberOfBytes > 0) {
         unsigned int index = 0;
         while (true) {
@@ -92,7 +92,7 @@ static void StartSequence(const I2cBitBang * const i2cBitBang, const unsigned in
     bool ack;
     do {
         I2CBitBangStart(i2cBitBang);
-        ack = I2CBitBangSend(i2cBitBang, I2C_WRITE_ADDRESS(I2C_ADDRESS));
+        ack = I2CBitBangSend(i2cBitBang, I2CSlaveAddressWrite(I2C_ADDRESS));
     } while (ack == false); // wait for write cycle to complete
     I2CBitBangSend(i2cBitBang, address >> 8);
     I2CBitBangSend(i2cBitBang, address & 0xFF);
