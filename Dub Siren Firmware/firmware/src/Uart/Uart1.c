@@ -88,7 +88,7 @@ void Uart1Initialise(const UartSettings * const uartSettings) {
  */
 void Uart1Disable() {
 
-    // Disable module and ensure default register states
+    // Disable module and restore default register states
     U1MODECLR = 0xFFFFFFFF;
     U1STACLR = 0xFFFFFFFF;
 

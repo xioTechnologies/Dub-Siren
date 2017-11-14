@@ -14,7 +14,7 @@
 
 /**
  * @brief Initialises I2C bit-bang structure.
- * @param i2cBitBang I2C bit-bang structure to be initialise.
+ * @param i2cBitBang I2C bit-bang structure.
  * @param waitHalfClockCycle Function that implements a delay for half the I2C
  * clock period.
  * @param writeScl Function that implements a write to the SCL pin.

@@ -24,7 +24,7 @@
 // Definitions
 
 /**
- * @brief Cascade filter structure.  Structure members used internally and
+ * @brief Cascade filter structure.  Structure members are used internally and
  * should not be used by the user application.
  */
 typedef struct {

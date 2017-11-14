@@ -8,7 +8,7 @@
 // Includes
 
 #include "Eeprom.h"
-#include "stdbool.h"
+#include <stdbool.h>
 
 //------------------------------------------------------------------------------
 // Definitions

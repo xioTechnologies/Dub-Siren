@@ -19,7 +19,7 @@
 /**
  * @bief Number of timer ticks per second.
  */
-#define TIMER_TICKS_PER_SECOND ((uint32_t) SYS_CLK_BUS_PERIPHERAL_1)
+#define TIMER_TICKS_PER_SECOND ((uint32_t) SYS_CLK_BUS_PERIPHERAL_3)
 
 //------------------------------------------------------------------------------
 // Function prototypes

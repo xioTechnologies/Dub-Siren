@@ -17,7 +17,7 @@
 // Definitions
 
 /**
- * @brief Debounced button structure.  Structure members used internally and
+ * @brief Debounced button structure.  Structure members are used internally and
  * should not be used by the user application.
  */
 typedef struct {

@@ -10,7 +10,7 @@
 //------------------------------------------------------------------------------
 // Includes
 
-#include "stdbool.h"
+#include <stdbool.h>
 #include <stdint.h>
 
 //------------------------------------------------------------------------------
@@ -55,7 +55,7 @@ extern const UartSettings defaultUartSettings;
 //------------------------------------------------------------------------------
 // Function prototypes
 
-uint32_t UartCalculateUxbrg(const uint32_t baudRate);
+unsigned int UartCalculateUxbrg(const uint32_t baudRate);
 float UartCalculateBaudRateError(const uint32_t baudRate);
 
 #endif

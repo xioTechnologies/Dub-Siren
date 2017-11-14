@@ -30,8 +30,8 @@ static int buffer;
 /**
  * @breif Initialises module.  This function should be called once, on system
  * start up.
- * @param audioUpdate External audio update function.  The audio update function
- * must call DacWriteBuffer immediately.
+ * @param audioUpdate External audio update callback function.  The audio update
+ * callback function must call DacWriteBuffer immediately.
  */
 void DacInitialise(void (*audioUpdate)()) {
 
