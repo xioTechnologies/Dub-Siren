@@ -70,7 +70,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #pragma config SMCLR =      MCLR_NORM
 #pragma config SOSCGAIN =   GAIN_LEVEL_3
 #pragma config SOSCBOOST =  ON
-#pragma config POSCGAIN =   GAIN_LEVEL_3
+#pragma config POSCGAIN =   GAIN_LEVEL_0
 #pragma config POSCBOOST =  ON
 #pragma config EJTAGBEN =   NORMAL
 #pragma config CP =         OFF
