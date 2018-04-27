@@ -1,7 +1,7 @@
 /**
  * @file i2cBitBang.c
  * @author Seb Madgwick
- * @brief I2C master bit-bang.  Requires use of open-drain outputs.
+ * @brief I2C master bit-bang.
  */
 
 //------------------------------------------------------------------------------

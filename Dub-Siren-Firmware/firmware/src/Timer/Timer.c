@@ -1,7 +1,7 @@
 /**
  * @file Timer.c
  * @author Seb Madgwick
- * @brief Timer library for PIC32MZ.
+ * @brief Timer library for PIC32.
  */
 
 //------------------------------------------------------------------------------
@@ -24,7 +24,7 @@ typedef union {
 } Uint64Union;
 
 //------------------------------------------------------------------------------
-// Variable declarations
+// Variables
 
 static volatile uint32_t timerOverflowCounter;
 

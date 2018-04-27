@@ -10,7 +10,7 @@
 #include "DefaultPresets.h"
 
 //------------------------------------------------------------------------------
-// Variable declarations
+// Variables
 
 const SynthesiserParameters fogHorn = {
     .lfoWaveform = LfoWaveformSawtooth,

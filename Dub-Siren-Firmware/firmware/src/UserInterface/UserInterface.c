@@ -76,7 +76,7 @@ static char* LfoWaveformToString(LfoWaveform lfoWaveform);
 static char* VcoWaveformToString(VcoWaveform vcoWaveform);
 
 //------------------------------------------------------------------------------
-// Variable declarations
+// Variables
 
 static DebouncedButton triggerSaveButton;
 static DebouncedButton lfoGateControlButton;

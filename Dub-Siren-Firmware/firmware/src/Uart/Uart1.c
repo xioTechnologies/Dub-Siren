@@ -1,7 +1,7 @@
 /**
  * @file Uart1.c
  * @author Seb Madgwick
- * @brief UART library for PIC32MZ.
+ * @brief UART library for PIC32.
  */
 
 //------------------------------------------------------------------------------
@@ -35,24 +35,25 @@
 //------------------------------------------------------------------------------
 // Function prototypes
 
-static void TriggerTransmission();
+static inline __attribute__((always_inline)) void RXInterruptTasks();
+static inline __attribute__((always_inline)) void TXInterruptTasks();
 
 //------------------------------------------------------------------------------
 // Variables
 
-static volatile bool readBufferOverrun = false;
+static volatile bool readBufferOverrun;
 static volatile char readBuffer[READ_WRITE_BUFFER_SIZE];
-static volatile unsigned int readBufferInIndex = 0; // only written to by interrupt
-static volatile unsigned int readBufferOutIndex = 0;
+static volatile unsigned int readBufferInIndex; // only written to by interrupt
+static volatile unsigned int readBufferOutIndex;
 static volatile char writeBuffer[READ_WRITE_BUFFER_SIZE];
-static volatile unsigned int writeBufferInIndex = 0;
-static volatile unsigned int writeBufferOutIndex = 0; // only written to by interrupt
+static volatile unsigned int writeBufferInIndex;
+static volatile unsigned int writeBufferOutIndex; // only written to by interrupt
 
 //------------------------------------------------------------------------------
 // Functions
 
 /**
- * @brief Initialises the UART module with specified settings.
+ * @brief Initialises the UART module.
  * @param uartSettings UART settings.
  */
 void Uart1Initialise(const UartSettings * const uartSettings) {
@@ -71,15 +72,20 @@ void Uart1Initialise(const UartSettings * const uartSettings) {
     U1MODEbits.PDSEL = uartSettings->parityAndData;
     U1MODEbits.STSEL = uartSettings->stopBits;
     U1MODEbits.BRGH = 1; // High-Speed mode - 4x baud clock enabled
-    U1STAbits.UTXISEL = 0b10; // Interrupt is generated when the transmit buffer becomes empty
+    U1STAbits.URXISEL = 0b01; // Interrupt flag bit is asserted while receive buffer is 1/2 or more full (i.e., has 4 or more data characters)
+    U1STAbits.UTXISEL = 0b10; // Interrupt is generated and asserted while the transmit buffer is empty
     U1STAbits.URXEN = 1; // UARTx receiver is enabled. UxRX pin is controlled by UARTx (if ON = 1)
     U1STAbits.UTXEN = 1; // UARTx transmitter is enabled. UxTX pin is controlled by UARTx (if ON = 1)
     U1BRG = UartCalculateUxbrg(uartSettings->baudRate);
     U1MODEbits.ON = 1; // UARTx is enabled. UARTx pins are controlled by UARTx as defined by UEN<1:0> and UTXEN control bits
 
     // Configure interrupt
+#ifdef _UART_1_VECTOR
+    SYS_INT_VectorPrioritySet(INT_VECTOR_UART1, INTERRUPT_PRIORITY); // set TX/RX interrupt priority
+#else
     SYS_INT_VectorPrioritySet(INT_VECTOR_UART1_RX, INTERRUPT_PRIORITY); // set RX interrupt priority
     SYS_INT_VectorPrioritySet(INT_VECTOR_UART1_TX, INTERRUPT_PRIORITY); // set TX interrupt priority
+#endif
     SYS_INT_SourceEnable(INT_SOURCE_USART_1_RECEIVE); // enable RX interrupt
 }
 
@@ -109,7 +115,7 @@ void Uart1Disable() {
  */
 size_t Uart1IsReadReady() {
 
-    // Trigger interrupt if hardware receive buffer not empty
+    // Trigger RX interrupt if hardware receive buffer not empty
     if (U1STAbits.URXDA == 1) {
         SYS_INT_SourceStatusSet(INT_SOURCE_USART_1_RECEIVE);
     }
@@ -147,7 +153,7 @@ size_t Uart1IsWriteReady() {
  */
 void Uart1WriteChar(const char byte) {
     writeBuffer[writeBufferInIndex++ & READ_WRITE_BUFFER_INDEX_BIT_MASK] = byte;
-    TriggerTransmission();
+    SYS_INT_SourceEnable(INT_SOURCE_USART_1_TRANSMIT); // enable TX interrupt
 }
 
 /**
@@ -171,7 +177,7 @@ void Uart1WriteCharArray(const char* const source, const size_t numberOfBytes) {
     for (index = 0; index < numberOfBytes; index++) {
         writeBuffer[writeBufferInIndex++ & READ_WRITE_BUFFER_INDEX_BIT_MASK] = source[index];
     }
-    TriggerTransmission();
+    SYS_INT_SourceEnable(INT_SOURCE_USART_1_TRANSMIT); // enable TX interrupt
 }
 
 /**
@@ -194,7 +200,7 @@ void Uart1WriteString(const char* string) {
     while (*string != '\0') {
         writeBuffer[writeBufferInIndex++ & READ_WRITE_BUFFER_INDEX_BIT_MASK] = *string++;
     }
-    TriggerTransmission();
+    SYS_INT_SourceEnable(INT_SOURCE_USART_1_TRANSMIT); // enable TX interrupt
 }
 
 /**
@@ -206,16 +212,6 @@ void Uart1WriteStringIfReady(const char* string) {
         return;
     }
     Uart1WriteString(string);
-}
-
-/**
- * @brief Triggers interrupt handled transmission of write buffer contents.
- */
-static void TriggerTransmission() {
-    if (SYS_INT_SourceIsEnabled(INT_SOURCE_USART_1_TRANSMIT) == false) {
-        SYS_INT_SourceStatusSet(INT_SOURCE_USART_1_TRANSMIT); // set TX interrupt flag
-        SYS_INT_SourceEnable(INT_SOURCE_USART_1_TRANSMIT); // enable TX interrupt
-    }
 }
 
 /**
@@ -257,12 +253,49 @@ bool Uart1IsTransmitionComplete() {
     return SYS_INT_SourceIsEnabled(INT_SOURCE_USART_1_TRANSMIT) == false;
 }
 
+#ifdef _UART_1_VECTOR
+
 /**
- * @brief UART RX interrupt.  Data received immediately before clearing the RX
- * interrupt flag will not be processed, URXDA must be polled to set the RX
- * interrupt flag.  This is done in Uart1IsReadReady.
+ * @brief UART RX/TX interrupt.
+ */
+void __ISR(_UART_1_VECTOR) Uart1Interrupt() {
+
+    // RX interrupt
+    if (SYS_INT_SourceStatusGet(INT_SOURCE_USART_1_RECEIVE) == true) {
+        RXInterruptTasks();
+    }
+
+    // TX interrupt
+    if (SYS_INT_SourceIsEnabled(INT_SOURCE_USART_1_TRANSMIT) == false) {
+        return; // return if TX interrupt disabled because TX interrupt flag will remain set while the transmit buffer is empty
+    }
+    if (SYS_INT_SourceStatusGet(INT_SOURCE_USART_1_TRANSMIT) == true) {
+        TXInterruptTasks();
+    }
+}
+
+#else
+
+/**
+ * @brief UART RX interrupt.
  */
 void __ISR(_UART1_RX_VECTOR) Uart1RxInterrupt() {
+    RXInterruptTasks();
+}
+
+/**
+ * @brief UART TX interrupt.
+ */
+void __ISR(_UART1_TX_VECTOR) Uart1TxInterrupt() {
+    TXInterruptTasks();
+}
+
+#endif
+
+/**
+ * @brief UART RX interrupt tasks.
+ */
+static inline __attribute__((always_inline)) void RXInterruptTasks() {
     while (U1STAbits.URXDA == 1) { // repeat while data available in receive buffer
         const char byte = U1RXREG;
         if (readBufferInIndex == ((readBufferOutIndex & READ_WRITE_BUFFER_INDEX_BIT_MASK) - 1)) {
@@ -275,9 +308,9 @@ void __ISR(_UART1_RX_VECTOR) Uart1RxInterrupt() {
 }
 
 /**
- * @brief UART TX interrupt.
+ * @brief UART TX interrupt tasks.
  */
-void __ISR(_UART1_TX_VECTOR) Uart1TxInterrupt() {
+static inline __attribute__((always_inline)) void TXInterruptTasks() {
     SYS_INT_SourceDisable(INT_SOURCE_USART_1_TRANSMIT); // disable TX interrupt to avoid nested interrupt
     SYS_INT_SourceStatusClear(INT_SOURCE_USART_1_TRANSMIT); // clear TX interrupt flag
     while (U1STAbits.UTXBF == 0) { // repeat while transmit buffer not full

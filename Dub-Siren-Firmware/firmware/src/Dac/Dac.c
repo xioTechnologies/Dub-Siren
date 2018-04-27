@@ -19,7 +19,7 @@
 #include <xc.h>
 
 //------------------------------------------------------------------------------
-// Variable declarations
+// Variables
 
 static void (*audioUpdateCallback)();
 static int buffer;

@@ -37,7 +37,7 @@ static void MixToDelayBuffer(const float sample);
 static void IncrementDelayBufferIndex();
 
 //------------------------------------------------------------------------------
-// Variable declarations
+// Variables
 
 const SynthesiserParameters defaultSynthesiserParameters = {
     .lfoWaveform = LfoWaveformSine,

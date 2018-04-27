@@ -1,7 +1,7 @@
 /**
  * @file UartCommon.h
  * @author Seb Madgwick
- * @brief UART library for PIC32MZ.
+ * @brief UART library for PIC32.
  */
 
 #ifndef UART_COMMON_H

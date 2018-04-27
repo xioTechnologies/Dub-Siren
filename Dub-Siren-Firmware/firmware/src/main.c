@@ -7,7 +7,7 @@
  * PIC32MZ2048EFH064
  *
  * Compiler:
- * XC32 v2.05 (using Legacy libc),  Harmony v2.05.01
+ * XC32 v2.05 (using Legacy libc), MPLAB Harmony v2.05.01
  */
 
 //------------------------------------------------------------------------------

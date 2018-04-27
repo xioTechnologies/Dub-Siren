@@ -1,7 +1,7 @@
 /**
  * @file Timer.h
  * @author Seb Madgwick
- * @brief Timer library for PIC32MZ.
+ * @brief Timer library for PIC32.
  */
 
 #ifndef TIMER_H
@@ -11,7 +11,7 @@
 // Includes
 
 #include <stdint.h>
-#include "system_config.h" // SYS_CLK_BUS_PERIPHERAL_3
+#include "system_config.h"
 
 //------------------------------------------------------------------------------
 // Definitions

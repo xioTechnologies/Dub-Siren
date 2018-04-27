@@ -1,7 +1,7 @@
 /**
  * @file UartCommon.h
  * @author Seb Madgwick
- * @brief UART library for PIC32MZ.
+ * @brief UART library for PIC32.
  */
 
 //------------------------------------------------------------------------------
@@ -16,7 +16,7 @@
 /**
  * @brief Value used for baud rate calculation.
  */
-#define FPB (SYS_CLK_BUS_PERIPHERAL_1)
+#define FPB (SYS_CLK_BUS_PERIPHERAL_2)
 
 //------------------------------------------------------------------------------
 // Variables
