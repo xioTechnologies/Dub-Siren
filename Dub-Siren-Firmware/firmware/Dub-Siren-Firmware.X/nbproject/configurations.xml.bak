@@ -25,42 +25,43 @@
       <logicalFolder name="f3" displayName="Filters" projectFiles="true">
         <itemPath>../src/Filters/FirstOrderFilter.h</itemPath>
         <itemPath>../src/Filters/CascadeFilter.h</itemPath>
-      </logicalFolder>
+      </logicalFolder>      
       <logicalFolder name="f1" displayName="framework" projectFiles="true">
         <logicalFolder name="f1" displayName="osal" projectFiles="true">
-          <itemPath>../../../../../../../microchip/harmony/v2_04/framework/osal/osal.h</itemPath>
-          <itemPath>../../../../../../../microchip/harmony/v2_04/framework/osal/osal_definitions.h</itemPath>
-          <itemPath>../../../../../../../microchip/harmony/v2_04/framework/osal/osal_impl_basic.h</itemPath>
+          <itemPath>../../../../../../../microchip/harmony/v2_05_01/framework/osal/osal.h</itemPath>
+          <itemPath>../../../../../../../microchip/harmony/v2_05_01/framework/osal/osal_definitions.h</itemPath>
+          <itemPath>../../../../../../../microchip/harmony/v2_05_01/framework/osal/osal_impl_basic.h</itemPath>
         </logicalFolder>
         <logicalFolder name="f2" displayName="system" projectFiles="true">
           <logicalFolder name="f2" displayName="clk" projectFiles="true">
-            <itemPath>../../../../../../../microchip/harmony/v2_04/framework/system/clk/sys_clk.h</itemPath>
-            <itemPath>../../../../../../../microchip/harmony/v2_04/framework/system/clk/sys_clk_compatibility.h</itemPath>
-            <itemPath>../../../../../../../microchip/harmony/v2_04/framework/system/clk/sys_clk_mapping.h</itemPath>
+            <itemPath>../../../../../../../microchip/harmony/v2_05_01/framework/system/clk/sys_clk.h</itemPath>
+            <itemPath>../../../../../../../microchip/harmony/v2_05_01/framework/system/clk/sys_clk_compatibility.h</itemPath>
+            <itemPath>../../../../../../../microchip/harmony/v2_05_01/framework/system/clk/sys_clk_mapping.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f1" displayName="common" projectFiles="true">
-            <itemPath>../../../../../../../microchip/harmony/v2_04/framework/system/common/sys_common.h</itemPath>
-            <itemPath>../../../../../../../microchip/harmony/v2_04/framework/system/common/sys_module.h</itemPath>
-            <itemPath>../../../../../../../microchip/harmony/v2_04/framework/system/common/sys_buffer.h</itemPath>
-            <itemPath>../../../../../../../microchip/harmony/v2_04/framework/system/common/sys_queue.h</itemPath>
+            <itemPath>../../../../../../../microchip/harmony/v2_05_01/framework/system/common/sys_common.h</itemPath>
+            <itemPath>../../../../../../../microchip/harmony/v2_05_01/framework/system/common/sys_module.h</itemPath>
+            <itemPath>../../../../../../../microchip/harmony/v2_05_01/framework/system/common/sys_buffer.h</itemPath>
+            <itemPath>../../../../../../../microchip/harmony/v2_05_01/framework/system/common/sys_queue.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f4" displayName="debug" projectFiles="true">
-            <itemPath>../../../../../../../microchip/harmony/v2_04/framework/system/debug/sys_debug.h</itemPath>
+            <itemPath>../../../../../../../microchip/harmony/v2_05_01/framework/system/debug/sys_debug.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f5" displayName="int" projectFiles="true">
             <logicalFolder name="f1" displayName="src" projectFiles="true">
-              <itemPath>../../../../../../../microchip/harmony/v2_04/framework/system/int/src/sys_int_private.h</itemPath>
+              <itemPath>../../../../../../../microchip/harmony/v2_05_01/framework/system/int/src/sys_int_private.h</itemPath>
             </logicalFolder>
-            <itemPath>../../../../../../../microchip/harmony/v2_04/framework/system/int/sys_int.h</itemPath>
-            <itemPath>../../../../../../../microchip/harmony/v2_04/framework/system/int/sys_int_mapping.h</itemPath>
+            <itemPath>../../../../../../../microchip/harmony/v2_05_01/framework/system/int/sys_int.h</itemPath>
+            <itemPath>../../../../../../../microchip/harmony/v2_05_01/framework/system/int/sys_int_mapping.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f3" displayName="ports" projectFiles="true">
-            <itemPath>../../../../../../../microchip/harmony/v2_04/framework/system/ports/sys_ports.h</itemPath>
-            <itemPath>../../../../../../../microchip/harmony/v2_04/framework/system/ports/sys_ports_definitions.h</itemPath>
+            <itemPath>../../../../../../../microchip/harmony/v2_05_01/framework/system/ports/sys_ports.h</itemPath>
+            <itemPath>../../../../../../../microchip/harmony/v2_05_01/framework/system/ports/sys_ports_definitions.h</itemPath>
           </logicalFolder>
-          <itemPath>../../../../../../../microchip/harmony/v2_04/framework/system/system.h</itemPath>
+          <itemPath>../../../../../../../microchip/harmony/v2_05_01/framework/system/system.h</itemPath>
         </logicalFolder>
       </logicalFolder>
+    </logicalFolder>
       <logicalFolder name="f7" displayName="I2C" projectFiles="true">
         <itemPath>../src/I2C/I2CBitBang.h</itemPath>
         <itemPath>../src/I2C/I2CSlaveAddress.h</itemPath>
@@ -86,7 +87,7 @@
       <itemPath>../src/FirmwareVersion.h</itemPath>
       <itemPath>../src/IODefinitions.h</itemPath>
       <itemPath>../src/MathHelpers.h</itemPath>
-    </logicalFolder>
+    </logicalFolder>    
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
                    projectFiles="true">
@@ -130,12 +131,12 @@
       <logicalFolder name="f3" displayName="Filters" projectFiles="true">
         <itemPath>../src/Filters/CascadeFilter.c</itemPath>
         <itemPath>../src/Filters/FirstOrderFilter.c</itemPath>
-      </logicalFolder>
+      </logicalFolder>      
       <logicalFolder name="f1" displayName="framework" projectFiles="true">
         <logicalFolder name="f1" displayName="system" projectFiles="true">
           <logicalFolder name="f1" displayName="int" projectFiles="true">
             <logicalFolder name="f1" displayName="src" projectFiles="true">
-              <itemPath>../../../../../../../microchip/harmony/v2_04/framework/system/int/src/sys_int_pic32.c</itemPath>
+              <itemPath>../../../../../../../microchip/harmony/v2_05_01/framework/system/int/src/sys_int_pic32.c</itemPath>
             </logicalFolder>
           </logicalFolder>
         </logicalFolder>
@@ -170,7 +171,7 @@
   </logicalFolder>
   <sourceRootList>
     <Elem>../src</Elem>
-    <Elem>../../../../../microchip/harmony/v2_04</Elem>
+    <Elem>../../../../../microchip/harmony/v2_05_01</Elem>
     <Elem>..\src</Elem>
     <Elem>..\src\default</Elem>
     <Elem>..\src\system_config\default</Elem>
@@ -183,22 +184,22 @@
         <targetDevice>PIC32MZ2048EFH064</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>ICD3PlatformTool</platformTool>
+        <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC32</languageToolchain>
-        <languageToolchainVersion>1.44</languageToolchainVersion>
+        <languageToolchainVersion>2.05</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <compileType>
         <linkerTool>
           <linkerLibItems>
-            <linkerLibFileItem>../../../../../../../microchip/harmony/v2_04/bin/framework/peripheral/PIC32MZ2048EFH064_peripherals.a</linkerLibFileItem>
+            <linkerLibFileItem>../../../../../../../microchip/harmony/v2_05_01/bin/framework/peripheral/PIC32MZ2048EFH064_peripherals.a</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
         <archiverTool>
         </archiverTool>
         <loading>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
-          <parseOnProdLoad>true</parseOnProdLoad>
+          <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
         </loading>
         <subordinates>
@@ -222,7 +223,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../src;../src/system_config/default;../src/default;../../../../../../../microchip/harmony/v2_04/framework;../src/system_config/default/framework"/>
+                  value="../src;../src/system_config/default;../src/default;../../../../../../../microchip/harmony/v2_05_01/framework;../src/system_config/default/framework"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
@@ -289,6 +290,7 @@
         <property key="kseg-origin" value=""/>
         <property key="linker-symbols" value=""/>
         <property key="map-file" value="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map"/>
+        <property key="no-device-startup-code" value="false"/>
         <property key="no-startup-files" value="false"/>
         <property key="oXC32ld-extra-opts" value=""/>
         <property key="optimization-level" value=""/>
@@ -342,9 +344,6 @@
         <property key="save-temps" value="false"/>
         <property key="wpo-lto" value="false"/>
       </C32Global>
-      <ICD3PlatformTool>
-        <property key="firmware.download.all" value="false"/>
-      </ICD3PlatformTool>
       <PICkit3PlatformTool>
         <property key="ADC" value="true"/>
         <property key="AutoSelectMemRanges" value="auto"/>
